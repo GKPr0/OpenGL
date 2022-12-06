@@ -10,7 +10,6 @@
 #include <iostream>
 #include <thread>
 
-
 #include "globals.h"
 #include "inits.h"
 #include "utils.h"
@@ -24,8 +23,6 @@ int main()
 {
     initGlfw();
     initGlew();
-
-    glEnable(GL_CULL_FACE);
 
     glfwGetWindowSize(glfwGetCurrentContext(), &winConfig.width, &winConfig.height);
     glViewport(0, 0, winConfig.width, winConfig.height);
@@ -58,9 +55,7 @@ int main()
         objects.push_back(circle);
 
         angle += step;
-    }
-   
-   
+    }   
 
     while (!glfwWindowShouldClose(globals.window)) {
 

@@ -84,6 +84,8 @@ void initGlfw() {
     glfwSetMouseButtonCallback(globals.window, mouseButtonCallback);
     glfwSetScrollCallback(globals.window, scrollCallback);
 
+    glfwSetInputMode(globals.window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
     // Get some GLFW info.
     {
         int major, minor, revision;

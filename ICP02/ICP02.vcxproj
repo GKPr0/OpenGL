@@ -146,6 +146,10 @@
     <ClCompile Include="cameraProcessing.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="circle.cpp" />
+    <ClCompile Include="engine\base\Program.cpp" />
+    <ClCompile Include="engine\base\Shader.cpp" />
+    <ClCompile Include="engine\base\Window.cpp" />
+    <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="ICP04.cpp" />
     <ClCompile Include="inits.cpp" />
     <ClCompile Include="object.cpp" />
@@ -158,6 +162,11 @@
     <ClInclude Include="cameraProcessing.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="circle.h" />
+    <ClInclude Include="engine\base\Program.h" />
+    <ClInclude Include="engine\base\Shader.h" />
+    <ClInclude Include="engine\base\Window.h" />
+    <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\Settings.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="inits.h" />
     <ClInclude Include="object.h" />

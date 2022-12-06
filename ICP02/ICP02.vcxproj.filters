@@ -19,6 +19,18 @@
     <Filter Include="Header Files\Objects">
       <UniqueIdentifier>{e80e0b28-e547-4161-a599-2ca3377de2e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{3bc59498-dda2-4026-aa21-2f85acf5bc87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Base">
+      <UniqueIdentifier>{a5b15740-41f2-4a24-881c-3c1b8692c45a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{27f40dad-cc05-4820-8c1e-919ffd73233e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Base">
+      <UniqueIdentifier>{bff43d9d-24d4-46c1-b0ab-33b10a258e31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICP04.cpp">
@@ -51,6 +63,18 @@
     <ClCompile Include="circle.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="engine\base\Window.cpp">
+      <Filter>Source Files\Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Engine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\base\Shader.cpp">
+      <Filter>Source Files\Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\base\Program.cpp">
+      <Filter>Source Files\Engine\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inits.h">
@@ -82,6 +106,21 @@
     </ClInclude>
     <ClInclude Include="circle.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\Window.h">
+      <Filter>Header Files\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Settings.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Engine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\Shader.h">
+      <Filter>Header Files\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\Program.h">
+      <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
