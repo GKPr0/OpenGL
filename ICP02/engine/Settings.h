@@ -5,23 +5,26 @@
 namespace Engine {
 
     struct Settings {
-        std::string title = "Terrain Generator";
+        // Window
+        std::string title = "My awsome app";
+        unsigned windowWidth = 600;
+        unsigned windowHeight = 600;
+
+        // OpenGl settings
         unsigned majorVersion = 4;
         unsigned minorVersion = 1;
-        unsigned windowWidth = 1920;
-        unsigned windowHeight = 1080;
 
+        // Camera settings
+        glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+        glm::vec3 cameraDirection = glm::vec3(0.0f, 0.0f, -1.0f);
         float cameraPitch = 0;
         float cameraYaw = -90;
         float cameraSpeed = 7;
-        float cameraSensitivity = 0.1;
+        float cameraMouseSensitivity = 0.1;
+        float cameraZoomSensitivity = 10;
         float cameraFov = 45;
         float cameraFar = 1000;
         float cameraNear = 0.05;
-
-
-        glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-        glm::vec3 cameraDirection = glm::vec3(0.0f, 0.0f, -1.0f);
     };
 
     inline Settings settings;

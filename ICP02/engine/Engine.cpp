@@ -84,7 +84,6 @@ namespace Engine {
         std::cerr << "Error: " << description << std::endl;
     }
 
-
     void APIENTRY debugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
     {
         auto const src_str = [source]() {
@@ -130,5 +129,14 @@ namespace Engine {
             ", severity = " << severity_str <<
             ", ID = '" << id << '\'' <<
             ", message = '" << message << '\'' << std::endl;
+    }
+
+    void calculateDeltaTime()
+    {
+        static double lastTime;
+
+        double currentTime = glfwGetTime();
+        deltaTime = float(currentTime - lastTime);
+        lastTime = currentTime;
     }
 }
