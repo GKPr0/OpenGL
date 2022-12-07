@@ -45,7 +45,7 @@ int main()
     float radius = 10;
     for (int i = 0; i < 10; i++)
     {
-        Circle* circle = new Circle({ 0.0f, 0.0f, 1.0f }, 0.4f, 100);
+        Circle* circle = new Circle({ 0.0f, 0.0f, 1.0f }, 0.4f, 30);
 		
         auto modelMatrix = circle->getModelMatrix();
         modelMatrix = glm::translate(modelMatrix, glm::vec3(radius * cos(angle), -1.0f , radius * sin(angle)));

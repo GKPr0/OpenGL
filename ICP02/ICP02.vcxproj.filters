@@ -31,6 +31,18 @@
     <Filter Include="Header Files\Engine\Base">
       <UniqueIdentifier>{bff43d9d-24d4-46c1-b0ab-33b10a258e31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Renderable">
+      <UniqueIdentifier>{f1dd0ca7-fb3f-488a-97e0-98fa3bc2e3f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Renderable">
+      <UniqueIdentifier>{542e544c-8ebf-4a71-b7bd-7266a12e2ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Support">
+      <UniqueIdentifier>{9281c332-0d72-4550-b622-c0214ce7086d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Support">
+      <UniqueIdentifier>{34a0225c-0e4a-463a-b22d-46aafa84ddb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICP04.cpp">
@@ -74,6 +86,24 @@
     </ClCompile>
     <ClCompile Include="engine\base\Program.cpp">
       <Filter>Source Files\Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\base\Camera.cpp">
+      <Filter>Source Files\Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\Renderable.cpp">
+      <Filter>Source Files\Engine\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\Mesh.cpp">
+      <Filter>Source Files\Engine\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\Model.cpp">
+      <Filter>Source Files\Engine\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\support\OBJloader.cpp">
+      <Filter>Source Files\Engine\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\Scene.cpp">
+      <Filter>Source Files\Engine\Renderable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +150,27 @@
       <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
     <ClInclude Include="engine\base\Program.h">
+      <Filter>Header Files\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\Camera.h">
+      <Filter>Header Files\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\Renderable.h">
+      <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\Mesh.h">
+      <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\Model.h">
+      <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\support\OBJloader.h">
+      <Filter>Header Files\Engine\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\Scene.h">
+      <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\ProgramsManager.h">
       <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
   </ItemGroup>
