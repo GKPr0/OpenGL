@@ -18,6 +18,7 @@ Engine::Camera* camera;
 void loop();
 void scrollCallback(GLFWwindow* glfWindow, double xoffset, double yoffset);
 void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos);
+void resizeCallback(GLFWwindow* glfWindow, int width, int height);
 void inputCallback(GLFWwindow* glfWindow);
 
 int main()
@@ -26,6 +27,7 @@ int main()
 	window->setTitle("My awsome teapot");
 	window->setRenderMethod(loop);
 	window->setInputCallback(inputCallback);
+	window->setResizeCallback(resizeCallback);
 	window->setScrollCallback(scrollCallback);
 	window->setMouseMoveCallback(mouseMoveCallback);
 	window->setInputMode(GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -79,6 +81,11 @@ void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos)
 	float yOffset = Engine::deltaTime * float(height / 2 - ypos);
 
 	camera->rotate(-xOffset, yOffset);
+}
+
+void resizeCallback(GLFWwindow* glfWindow, int width, int height)
+{
+	window->setSize(width, height);
 }
 
 void inputCallback(GLFWwindow* glfWindow)
