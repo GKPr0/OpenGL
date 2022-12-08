@@ -29,8 +29,11 @@ namespace Engine {
 	{
 
 		while (!glfwWindowShouldClose(window))
-		{
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		{		
+			calculateDeltaTime();
+
+			loopCallback();
+			inputCallback(window);
 
 			glfwPollEvents();
 			glfwSwapBuffers(window);
@@ -41,7 +44,6 @@ namespace Engine {
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
-
 
 	Window::~Window()
 	{

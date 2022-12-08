@@ -43,38 +43,11 @@
     <Filter Include="Source Files\Engine\Support">
       <UniqueIdentifier>{34a0225c-0e4a-463a-b22d-46aafa84ddb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{71ace98b-ea9c-4e91-86ca-4a51b748b62e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ICP04.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="inits.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="callbacks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cameraProcessing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shaders.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="triangle.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="circle.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="engine\base\Window.cpp">
       <Filter>Source Files\Engine\Base</Filter>
     </ClCompile>
@@ -105,38 +78,11 @@
     <ClCompile Include="engine\renderable\Scene.cpp">
       <Filter>Source Files\Engine\Renderable</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callbacks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cameraProcessing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shaders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="object.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="triangle.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="circle.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="engine\base\Window.h">
       <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
@@ -175,20 +121,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\triangle.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="resources\triangle.vert">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="resources\video.mkv">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resources\circle.frag">
-      <Filter>Resource Files</Filter>
+    <None Include="resources\shaders\object.frag">
+      <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="resources\circle.vert">
-      <Filter>Resource Files</Filter>
+    <None Include="resources\shaders\object.vert">
+      <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

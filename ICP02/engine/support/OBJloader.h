@@ -11,4 +11,3 @@ namespace Engine {
 		std::vector < glm::vec3 >& out_normals
 	);
 }
-

@@ -18,7 +18,7 @@ namespace Engine {
 		bool status = loadOBJ(path.c_str(), positions, texPositions, normals);
 		if (!status)
 		{
-			std::cerr << "Failed to load obj from:" << path << std::endl;
+			std::cerr << "Failed to load obj from: " << path << std::endl;
 			return; // TODO Throw error or clsoe app;
 		}
 

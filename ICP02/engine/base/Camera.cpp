@@ -6,16 +6,16 @@
 namespace Engine 
 {
 	Camera::Camera(Window& window,
-		const glm::vec3& position = settings.cameraPosition,
-		const glm::vec3& diretion = settings.cameraDirection,
-		const float pitch = settings.cameraPitch,
-		const float yaw = settings.cameraYaw,
-		const float speed = settings.cameraSpeed,
-		const float mouseSensitivity = settings.cameraMouseSensitivity,
-		const float zoomSensitivity = settings.cameraZoomSensitivity,
-		const float fov = settings.cameraFov,
-		const float nearPlane = settings.cameraNear,
-		const float farPlane = settings.cameraFar) 
+		const glm::vec3& position,
+		const glm::vec3& diretion,
+		const float pitch,
+		const float yaw,
+		const float speed,
+		const float mouseSensitivity,
+		const float zoomSensitivity,
+		const float fov,
+		const float nearPlane,
+		const float farPlane) 
 		: window(window), position(position), direction(direction), pitch(pitch), yaw(yaw),
 		speed(speed), mouseSensitivity(mouseSensitivity), zoomSensitivity(zoomSensitivity),
 		fov(fov), nearPlane(nearPlane), farPlane(farPlane)

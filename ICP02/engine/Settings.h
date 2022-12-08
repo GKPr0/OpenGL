@@ -19,9 +19,9 @@ namespace Engine {
         glm::vec3 cameraDirection = glm::vec3(0.0f, 0.0f, -1.0f);
         float cameraPitch = 0;
         float cameraYaw = -90;
-        float cameraSpeed = 7;
-        float cameraMouseSensitivity = 0.1;
-        float cameraZoomSensitivity = 10;
+        float cameraSpeed = 10;
+        float cameraMouseSensitivity = 0.4f;
+        float cameraZoomSensitivity = 5;
         float cameraFov = 45;
         float cameraFar = 1000;
         float cameraNear = 0.05;

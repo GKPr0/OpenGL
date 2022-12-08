@@ -19,6 +19,7 @@ namespace Engine
         void clear();
 
     public:
+        Program(){};
         Program(const Shader& vertex, const Shader& fragment);
         Program(const std::string& vertFileName, const std::string& fragFileName);
         ~Program();
