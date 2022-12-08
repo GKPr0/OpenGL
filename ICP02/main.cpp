@@ -42,11 +42,23 @@ int main()
 	Engine::Model teapot = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj");
 	scene->addObject(teapot);
 
+	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj");
+	sphere.translate(glm::vec3(20.0f, 0.0f, 20.0f));
+	sphere.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+	scene->addObject(sphere);
+
+	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj");
+	bunny.translate(glm::vec3(-20.0f, 0.0f, 20.0f));
+	scene->addObject(bunny);
+
 	window->startRender();
 }
 
 void loop() 
 {
+	for (auto object : scene->getObjects())
+		object->rotateY(1.0f);
+
 	scene->render();
 }
 

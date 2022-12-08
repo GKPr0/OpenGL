@@ -12,16 +12,18 @@ namespace Engine
 	public:
 		Scene(Window& window, Camera& camera, ProgramsManager& programs);
 
+		void render();
+
 		void addObject(Model& model);
 
-		void render();
+		const std::vector<Model*>& getObjects() const;
 
 	private:
 		Window& window;
 		Camera& camera;
 		ProgramsManager& programs;
 
-		std::vector<Model> objects;
+		std::vector<Model*> objects;
 
 		void initProgram(Program& program);
 

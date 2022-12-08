@@ -18,8 +18,8 @@ namespace Engine {
 	{
 		initProgram(program);
 
-		for (Model model : objects)
-			model.render(program);
+		for (Model* model : objects)
+			model->render(program);
 	}
 
 	void Scene::initProgram(Program& program)
@@ -34,6 +34,11 @@ namespace Engine {
 
 	void Scene::addObject(Model& model)
 	{
-		objects.push_back(model);
+		objects.push_back(&model);
+	}
+
+	const std::vector<Model*>& Scene::getObjects() const
+	{
+		return objects;
 	}
 }

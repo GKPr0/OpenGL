@@ -17,11 +17,6 @@ namespace Engine {
         return matrix;
     }
 
-    void Renderable::rotate(const float& angle, const glm::vec3& vec)
-    { 
-        mRotation = glm::rotate(mRotation, glm::radians(angle), vec); 
-    }
-
     void Renderable::translate(const glm::vec3& translate)
     {
         mPosition += translate;
@@ -30,6 +25,26 @@ namespace Engine {
     void Renderable::scale(const glm::vec3& vec)
     {
         mScale = vec;
+    }
+
+    void Renderable::rotate(const float& angle, const glm::vec3& vec)
+    {
+        mRotation = glm::rotate(mRotation, glm::radians(angle), vec);
+    }
+
+    void Renderable::rotateX(const float& angle)
+    {
+        rotate(angle, glm::vec3(1.0f, 0.0f, 0.0f));
+    }
+
+    void Renderable::rotateY(const float& angle)
+    {
+        rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    }
+
+    void Renderable::rotateZ(const float& angle)
+    {
+        rotate(angle, glm::vec3(0.0f, 0.0f, 1.0f));
     }
 }
 

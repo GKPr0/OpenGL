@@ -13,9 +13,12 @@ namespace Engine
 
 		glm::mat4 getModelMatrix() const;
 
-		void rotate(const float& angle, const glm::vec3& vec);
 		void translate(const glm::vec3& translate);
 		void scale(const glm::vec3& vec);
+		void rotate(const float& angle, const glm::vec3& vec);
+		void rotateX(const float& angle);
+		void rotateY(const float& angle);
+		void rotateZ(const float& angle);
 
 	protected:
 		GLuint vao;
