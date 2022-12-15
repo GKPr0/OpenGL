@@ -147,6 +147,7 @@
     <ClCompile Include="engine\base\Shader.cpp" />
     <ClCompile Include="engine\base\Window.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\renderable\Light.cpp" />
     <ClCompile Include="engine\renderable\Mesh.cpp" />
     <ClCompile Include="engine\renderable\Model.cpp" />
     <ClCompile Include="engine\renderable\Renderable.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="engine\base\ProgramsManager.h" />
     <ClInclude Include="engine\base\Window.h" />
     <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\renderable\Light.h" />
     <ClInclude Include="engine\renderable\Mesh.h" />
     <ClInclude Include="engine\renderable\Model.h" />
     <ClInclude Include="engine\renderable\Renderable.h" />

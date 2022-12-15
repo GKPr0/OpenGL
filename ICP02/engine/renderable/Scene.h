@@ -5,6 +5,7 @@
 #include <vector>
 #include "Model.h"
 #include "../base/ProgramsManager.h"
+#include "Light.h"
 
 namespace Engine
 {
@@ -15,8 +16,10 @@ namespace Engine
 		void render();
 
 		void addObject(Model& model);
+		void addLight(Light& light);
 
 		const std::vector<Model*>& getObjects() const;
+		const std::vector<Light*>& getLights() const;
 
 	private:
 		Window& window;
@@ -24,9 +27,11 @@ namespace Engine
 		ProgramsManager& programs;
 
 		std::vector<Model*> objects;
+		std::vector<Light*> lights;
 
 		void initProgram(Program& program);
 
 		void renderObjects(Program& program);
+		void renderLights();
 	};
 }

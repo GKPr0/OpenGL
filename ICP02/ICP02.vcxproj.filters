@@ -81,6 +81,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\renderable\Light.cpp">
+      <Filter>Source Files\Engine\Renderable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\base\Window.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="engine\base\ProgramsManager.h">
       <Filter>Header Files\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\Light.h">
+      <Filter>Header Files\Engine\Renderable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

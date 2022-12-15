@@ -12,7 +12,7 @@ namespace Engine {
 
         // OpenGl settings
         unsigned majorVersion = 4;
-        unsigned minorVersion = 1;
+        unsigned minorVersion = 4;
 
         // Camera settings
         glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);

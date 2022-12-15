@@ -11,6 +11,7 @@ namespace Engine {
 		glClearColor(0, 0, 0, 1);
 
 		Program objectProgram = programs.getObjectProgram();
+		renderLights();
 		renderObjects(objectProgram);
 	}
 
@@ -20,6 +21,20 @@ namespace Engine {
 
 		for (Model* model : objects)
 			model->render(program);
+	}
+
+	void Scene::renderLights()
+	{
+		Program objProgram = programs.getObjectProgram();
+
+		if (objProgram.getId() == 0)
+			return;
+
+		for (unsigned i = 0; i < lights.size(); ++i)
+		{
+			objProgram.use();
+			lights[i]->render(objProgram);
+		}
 	}
 
 	void Scene::initProgram(Program& program)
@@ -37,8 +52,18 @@ namespace Engine {
 		objects.push_back(&model);
 	}
 
+	void Scene::addLight(Light& light)
+	{
+		lights.push_back(&light);
+	}
+
 	const std::vector<Model*>& Scene::getObjects() const
 	{
 		return objects;
+	}
+
+	const std::vector<Light*>& Scene::getLights() const
+	{
+		return lights;
 	}
 }
