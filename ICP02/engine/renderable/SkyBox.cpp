@@ -117,6 +117,7 @@ namespace Engine
         program.setMat4("uM_m", getModelMatrix());
 
         glDepthMask(GL_FALSE);
+        glDepthFunc(GL_LEQUAL);
 		
         glBindTexture(GL_TEXTURE_CUBE_MAP, textureId);
 		
@@ -124,6 +125,7 @@ namespace Engine
         glDrawArrays(GL_TRIANGLES, 0, 36);
         
         glDepthMask(GL_TRUE);
+        glDepthFunc(GL_LESS);
         glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     }

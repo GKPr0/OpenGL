@@ -33,9 +33,6 @@ namespace Engine
 		std::vector<Model*> objects;
 		std::vector<Light*> lights;
 		
-
-		void initProgram(Program& program);
-
 		void renderSkyBox(Program& program);
 		void renderObjects(Program& program);
 		void renderLights(Program& program);

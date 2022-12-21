@@ -45,20 +45,21 @@ int main()
 	textures.addTexture("box", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/box_rgb888.png");
 	textures.addTexture("fur", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/fur.jpg");
 	textures.addTexture("steel", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/steel.jpg");
+	textures.addTexture("diamond_ore", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/mc_diamond_ore.png");
 	
 	scene = new Engine::Scene(*window, *camera, programs);
 
-	std::vector<std::string> faces
-	{
-		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/right.jpg",
-		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/left.jpg",
-		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/top.jpg",
-		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/bottom.jpg",
-		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/front.jpg",
-		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/back.jpg"
-	};
-	Engine::SkyBox skyBox = Engine::SkyBox(faces);
-	skyBox.scale(glm::vec3(700.0f));
+	
+	Engine::SkyBox skyBox = Engine::SkyBox(std::vector<std::string>
+		{
+			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/right.jpg",
+			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/left.jpg",
+			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/top.jpg",
+			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/bottom.jpg",
+			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/front.jpg",
+			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/back.jpg"
+		});
+	skyBox.scale(glm::vec3(500.0f));
 	scene->setSkyBox(skyBox);
 
 	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f));
@@ -76,13 +77,24 @@ int main()
 	bunny.translate(glm::vec3(-20.0f, 0.0f, 20.0f));
 	scene->addObject(bunny);
 
+	std::vector<std::string> boxes{"box", "diamond_ore", "fur", "steel"};
+	float x = 0.0f;
+	for (int i = 0; i < boxes.size(); i++)
+	{
+		Engine::Model* box = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures.getTexture(boxes[i]));
+		box->translate(glm::vec3(x, 0.0f, 100.0f));
+		box->scale(glm::vec3(15.0f, 15.0f, 15.0f));
+		scene->addObject(*box);
+		x += 30;
+	}
+	
 	window->startRender();
 }
 
 void loop() 
 {
-	for (auto object : scene->getObjects())
-		object->rotateY(1.0f);
+	/*for (auto object : scene->getObjects())
+		object->rotateY(1.0f);*/
 
 	scene->render();
 }

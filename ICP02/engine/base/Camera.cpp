@@ -66,7 +66,7 @@ namespace Engine
 	void Camera::zoom(const double direction)
 	{
 		float newFov = fov + direction * zoomSensitivity;
-		fov = std::clamp(newFov, 20.0f, 170.0f);
+		fov = std::clamp(newFov, settings.cameraMinZoom, settings.cameraMaxZoom);
 		update();
 	}
 
