@@ -2,7 +2,7 @@
 
 namespace Engine 
 {
-	Light::Light(const glm::vec3 position, const glm::vec3 ambientColor, const glm::vec3 diffuseColor, const glm::vec3 specularColor,
+	Light::Light(const glm::vec3& position, const glm::vec3& ambientColor, const glm::vec3& diffuseColor, const glm::vec3& specularColor,
 				const float& constantAttenuation, const float& linearAttenuation, const float& quadraticAttenuation)
 	{
 		this->mPosition = position;

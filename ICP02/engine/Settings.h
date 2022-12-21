@@ -15,7 +15,7 @@ namespace Engine {
         unsigned minorVersion = 4;
 
         // Camera settings
-        glm::vec3 cameraPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+        glm::vec3 cameraPosition = glm::vec3(0.0f);
         glm::vec3 cameraDirection = glm::vec3(0.0f, 0.0f, -1.0f);
         float cameraPitch = 0;
         float cameraYaw = -90;
@@ -25,6 +25,15 @@ namespace Engine {
         float cameraFov = 45;
         float cameraFar = 1000;
         float cameraNear = 0.05;
+
+        // Light settings
+        glm::vec3 lightPosition = glm::vec3(0.0f);
+        glm::vec3 ambientColor = glm::vec3(0.2f, 0.2f, 0.2f);
+        glm::vec3 diffuseColor = glm::vec3(0.1f, 0.0f, 0.0f);
+        glm::vec3 specualrColor = glm::vec3(1.0f);
+        float constantAttenuation = 1.0f;
+        float linearAttenuation = 0.0002f;
+        float quadraticAttenuation = 0.0007f;
     };
 
     inline Settings settings;

@@ -46,8 +46,7 @@ int main()
 	
 	scene = new Engine::Scene(*window, *camera, programs);
 
-	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f),glm::vec3(0.1f, 0.0f, 0.0f),
-										glm::vec3(1.0f), 1, 0.0002, 0.0007);
+	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f));
 	scene->addLight(light);
 
 	Engine::Model teapot = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures.getTexture("steel"));
