@@ -36,20 +36,13 @@ int main()
 	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,50.0f));
 
 	Engine::ProgramsManager programs = Engine::ProgramsManager();
-	
-	auto objProg = Engine::Program("resources/shaders/object.vert", "resources/shaders/object.frag");
+	auto objProg = Engine::Program("resources/shaders/object.vert", "resources/shaders/object.frag"); //Why this dont work if created inside prog manager?
 	programs.addProgram("object", objProg);
 
 	Engine::TexturesManager textures = Engine::TexturesManager();
-
-	auto boxTexture = Engine::Texture("D:/Programming/Cpp/ICP04/ICP02/resources/textures/box_rgb888.png");
-	textures.addTexture("box", boxTexture);
-
-	auto furTexture = Engine::Texture("D:/Programming/Cpp/ICP04/ICP02/resources/textures/fur.jpg");
-	textures.addTexture("fur", furTexture);
-
-	auto steelTexture = Engine::Texture("D:/Programming/Cpp/ICP04/ICP02/resources/textures/steel.jpg");
-	textures.addTexture("steel", steelTexture);
+	textures.addTexture("box", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/box_rgb888.png");
+	textures.addTexture("fur", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/fur.jpg");
+	textures.addTexture("steel", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/steel.jpg");
 	
 	scene = new Engine::Scene(*window, *camera, programs);
 
