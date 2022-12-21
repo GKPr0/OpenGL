@@ -38,6 +38,8 @@ int main()
 	Engine::ProgramsManager programs = Engine::ProgramsManager();
 	auto objProg = Engine::Program("resources/shaders/object.vert", "resources/shaders/object.frag"); //Why this dont work if created inside prog manager?
 	programs.addProgram("object", objProg);
+	auto skyBoxProg = Engine::Program("resources/shaders/skyBox.vert", "resources/shaders/skyBox.frag");
+	programs.addProgram("skybox", skyBoxProg);
 
 	Engine::TexturesManager textures = Engine::TexturesManager();
 	textures.addTexture("box", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/box_rgb888.png");
@@ -45,6 +47,19 @@ int main()
 	textures.addTexture("steel", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/steel.jpg");
 	
 	scene = new Engine::Scene(*window, *camera, programs);
+
+	std::vector<std::string> faces
+	{
+		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/right.jpg",
+		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/left.jpg",
+		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/top.jpg",
+		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/bottom.jpg",
+		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/front.jpg",
+		"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/back.jpg"
+	};
+	Engine::SkyBox skyBox = Engine::SkyBox(faces);
+	skyBox.scale(glm::vec3(700.0f));
+	scene->setSkyBox(skyBox);
 
 	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f));
 	scene->addLight(light);

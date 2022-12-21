@@ -153,6 +153,7 @@
     <ClCompile Include="engine\renderable\Model.cpp" />
     <ClCompile Include="engine\renderable\Renderable.cpp" />
     <ClCompile Include="engine\renderable\Scene.cpp" />
+    <ClCompile Include="engine\renderable\SkyBox.cpp" />
     <ClCompile Include="engine\support\OBJloader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -170,12 +171,15 @@
     <ClInclude Include="engine\renderable\Model.h" />
     <ClInclude Include="engine\renderable\Renderable.h" />
     <ClInclude Include="engine\renderable\Scene.h" />
+    <ClInclude Include="engine\renderable\SkyBox.h" />
     <ClInclude Include="engine\Settings.h" />
     <ClInclude Include="engine\support\OBJloader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\object.frag" />
     <None Include="resources\shaders\object.vert" />
+    <None Include="resources\shaders\skyBox.frag" />
+    <None Include="resources\shaders\skyBox.vert" />
     <None Include="resources\video.mkv" />
   </ItemGroup>
   <ItemGroup>

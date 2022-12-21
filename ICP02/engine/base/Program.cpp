@@ -99,6 +99,6 @@ namespace Engine
 
     void Program::clear()
     {
-        glDeleteProgram(id);
+        //glDeleteProgram(id); //TODO some how i badyl manage programs
     }
 }

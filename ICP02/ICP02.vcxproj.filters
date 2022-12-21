@@ -87,6 +87,9 @@
     <ClCompile Include="engine\base\Texture.cpp">
       <Filter>Source Files\Engine\Base</Filter>
     </ClCompile>
+    <ClCompile Include="engine\renderable\SkyBox.cpp">
+      <Filter>Source Files\Engine\Renderable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\base\Window.h">
@@ -134,6 +137,9 @@
     <ClInclude Include="engine\base\TexturesManager.h">
       <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
+    <ClInclude Include="engine\renderable\SkyBox.h">
+      <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\video.mkv">
@@ -143,6 +149,12 @@
       <Filter>Resource Files\shaders</Filter>
     </None>
     <None Include="resources\shaders\object.vert">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\skyBox.frag">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\skyBox.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>
