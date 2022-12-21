@@ -10,8 +10,8 @@ namespace Engine {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0, 0, 0, 1);
 
-		Program objectProgram = programs.getObjectProgram();
-		renderLights();
+		Program objectProgram = programs.getProgram("object");
+		renderLights(objectProgram);
 		renderObjects(objectProgram);
 	}
 
@@ -23,17 +23,16 @@ namespace Engine {
 			model->render(program);
 	}
 
-	void Scene::renderLights()
+	void Scene::renderLights(Program& program)
 	{
-		Program objProgram = programs.getObjectProgram();
 
-		if (objProgram.getId() == 0)
+		if (program.getId() == 0)
 			return;
 
 		for (unsigned i = 0; i < lights.size(); ++i)
 		{
-			objProgram.use();
-			lights[i]->render(objProgram);
+			program.use();
+			lights[i]->render(program);
 		}
 	}
 

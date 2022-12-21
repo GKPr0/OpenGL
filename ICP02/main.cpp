@@ -10,6 +10,7 @@
 #include "engine/base/Camera.h"
 #include "engine/renderable/Scene.h"
 #include "engine/Engine.h"
+#include "engine/base/TexturesManager.h"
 
 Engine::Window* window;
 Engine::Scene* scene;
@@ -34,26 +35,37 @@ int main()
 	
 	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,50.0f));
 
-	Engine::ProgramsManager  programs = Engine::ProgramsManager();
+	Engine::ProgramsManager programs = Engine::ProgramsManager();
+	
+	auto objProg = Engine::Program("resources/shaders/object.vert", "resources/shaders/object.frag");
+	programs.addProgram("object", objProg);
 
-	Engine::Program objectsProgram = Engine::Program("resources/shaders/object.vert", "resources/shaders/object.frag");
-	programs.setObjectProgram(objectsProgram);
+	Engine::TexturesManager textures = Engine::TexturesManager();
+
+	auto boxTexture = Engine::Texture("D:/Programming/Cpp/ICP04/ICP02/resources/textures/box_rgb888.png");
+	textures.addTexture("box", boxTexture);
+
+	auto furTexture = Engine::Texture("D:/Programming/Cpp/ICP04/ICP02/resources/textures/fur.jpg");
+	textures.addTexture("fur", furTexture);
+
+	auto steelTexture = Engine::Texture("D:/Programming/Cpp/ICP04/ICP02/resources/textures/steel.jpg");
+	textures.addTexture("steel", steelTexture);
 	
 	scene = new Engine::Scene(*window, *camera, programs);
 
-	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f),glm::vec3(1.0f, 0.0f, 0.0f),
+	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f),glm::vec3(0.1f, 0.0f, 0.0f),
 										glm::vec3(1.0f), 1, 0.0002, 0.0007);
 	scene->addLight(light);
 
-	Engine::Model teapot = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj");
+	Engine::Model teapot = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures.getTexture("steel"));
 	scene->addObject(teapot);
 
-	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj");
+	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures.getTexture("box"));
 	sphere.translate(glm::vec3(20.0f, 0.0f, 20.0f));
 	sphere.scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(sphere);
 
-	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj");
+	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures.getTexture("fur"));
 	bunny.translate(glm::vec3(-20.0f, 0.0f, 20.0f));
 	scene->addObject(bunny);
 

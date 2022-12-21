@@ -1,15 +1,16 @@
 #pragma once
 #include "Program.h"
+#include <map>
 
 namespace Engine 
 {
 	class ProgramsManager {
 	public:
-		void setObjectProgram(const Program& program) { object = program; }
 
-		const Program& getObjectProgram() const { return object; }
+		void addProgram(const std::string& key, const Program& program) { programs.insert_or_assign(key, program); }
+		const Program& getProgram(const std::string& key) const { return programs.at(key); }
 
 	private:
-		Program object;
+		std::map<std::string, Program> programs;
 	};
 }

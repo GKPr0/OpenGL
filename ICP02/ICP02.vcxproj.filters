@@ -84,6 +84,9 @@
     <ClCompile Include="engine\renderable\Light.cpp">
       <Filter>Source Files\Engine\Renderable</Filter>
     </ClCompile>
+    <ClCompile Include="engine\base\Texture.cpp">
+      <Filter>Source Files\Engine\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\base\Window.h">
@@ -124,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="engine\renderable\Light.h">
       <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\Texture.h">
+      <Filter>Header Files\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\base\TexturesManager.h">
+      <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

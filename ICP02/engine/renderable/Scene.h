@@ -32,6 +32,6 @@ namespace Engine
 		void initProgram(Program& program);
 
 		void renderObjects(Program& program);
-		void renderLights();
+		void renderLights(Program& program);
 	};
 }

@@ -2,12 +2,12 @@
 #include "../support/OBJloader.h"
 
 namespace Engine {
-	Model::Model(const std::string& path)
+	Model::Model(const std::string& path, const Texture& texture)
 	{
-		load(path);
+		load(path, texture);
 	}
 
-	void Model::load(const std::string& path)
+	void Model::load(const std::string& path, const Texture& texture)
 	{
 		std::vector<glm::vec3> positions;
 		std::vector<glm::vec2> texPositions;
@@ -29,7 +29,7 @@ namespace Engine {
 			indices.push_back(i);
 		}
 
-		Mesh mesh = Mesh(vertices, indices);
+		Mesh mesh = Mesh(vertices, indices, texture);
 		meshes.push_back(mesh);
 	}
 

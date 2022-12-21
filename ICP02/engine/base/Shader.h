@@ -1,12 +1,12 @@
 #pragma once
 #include <iostream>
-
 #include <GL/glew.h>
+
 
 namespace Engine 
 {
 	class Shader {
-		unsigned id;
+		GLuint id;
 		GLenum type;
 
 		Shader(const std::string& file, GLenum type);
@@ -27,7 +27,7 @@ namespace Engine
 
 		void clear() const { glDeleteShader(id); }
 
-		unsigned getId() const { return id; }
+		GLuint getId() const { return id; }
 		GLenum getType() const { return type; }
 	};
 }

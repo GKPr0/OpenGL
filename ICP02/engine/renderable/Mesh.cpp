@@ -2,8 +2,8 @@
 
 namespace Engine 
 {
-	Mesh::Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices)
-		: vertices(vertices), indices(indices)
+	Mesh::Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, const Texture& texture)
+		: vertices(vertices), indices(indices), texture(texture)
 	{
 		GLuint VBO, EBO;
 		// Generate the VAO and VBO 
@@ -40,9 +40,14 @@ namespace Engine
 
     void Mesh::render(Program& program)
     {
+        glActiveTexture(GL_TEXTURE0);
+        program.setInt("tex0", 0);
+
         glBindVertexArray(vao);
+        glBindTexture(GL_TEXTURE_2D, texture.getId());
         glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 }
 

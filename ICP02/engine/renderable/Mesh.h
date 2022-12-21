@@ -1,6 +1,7 @@
 #pragma once
 #include "Renderable.h"
 #include <vector>
+#include "../base/Texture.h"
 
 namespace Engine 
 {
@@ -13,13 +14,14 @@ namespace Engine
 
 	class Mesh : public Renderable {
 	public:
-		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices);
+		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, const Texture& texture);
 
 		// Inherited via Renderable
 		virtual void render(Program& program) override;
 
 	private:
 		std::vector<MeshVertex> vertices;
-		std::vector<GLuint> indices;		
+		std::vector<GLuint> indices;	
+		Texture texture;
 	};
 }

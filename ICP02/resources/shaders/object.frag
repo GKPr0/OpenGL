@@ -11,12 +11,16 @@ uniform float constantAttenuation = 1.0f;
 uniform float linearAttenuation = 0.0f;
 uniform float quadraticAttenuation = 0.0f;
 
+// Textures
+uniform sampler2D tex0; 
+
 // Input from vertex shader
 in VS_OUT
 {
     vec3 N;
     vec3 L;
     vec3 V;
+    vec2 texPos;
 } fs_in;
 
 
@@ -38,5 +42,8 @@ void main()
      float lightDistance = length(fs_in.L);
      float distanceAttenuation = 1.0f / (constantAttenuation + linearAttenuation * lightDistance + quadraticAttenuation * lightDistance * lightDistance) ;
 
-    FragColor = vec4(ambient + distanceAttenuation * ( diffuse + specular), 1.0f);
+     vec4 light = vec4(ambient + distanceAttenuation * ( diffuse + specular), 1.0f);
+     vec4 tex = texture(tex0, fs_in.texPos);
+
+     FragColor = tex + light;
 }
