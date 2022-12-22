@@ -2,7 +2,7 @@
 
 namespace Engine 
 {
-	Mesh::Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, const Texture& texture)
+	Mesh::Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, Texture* texture)
 		: vertices(vertices), indices(indices), texture(texture)
 	{
 		GLuint VBO, EBO;
@@ -44,7 +44,7 @@ namespace Engine
         program.setInt("tex0", 0);
 
         glBindVertexArray(vao);
-        glBindTexture(GL_TEXTURE_2D, texture.getId());
+        glBindTexture(GL_TEXTURE_2D, texture->getId());
         glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_2D, 0);

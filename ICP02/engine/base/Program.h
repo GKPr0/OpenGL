@@ -7,22 +7,12 @@
 
 namespace Engine
 {
-    class Program
-    {
-        unsigned id = 0;
-
-        void createProgram(const Shader& vertexShader, const Shader& fragmentShader);
-
-        std::string getProgramInfoLog(const GLuint programId);
-        unsigned getUniformId(const char* name) const;
-
-        void clear();
-
+    class Program {
     public:
         Program(){};
         Program(const Shader& vertex, const Shader& fragment);
         Program(const std::string& vertFileName, const std::string& fragFileName);
-        ~Program();
+        ~Program() { glDeleteProgram(id); };
 
         void use() const { glUseProgram(id); }
 
@@ -36,5 +26,13 @@ namespace Engine
         void setMat4(const char* name, const glm::mat4& mat) const;
 
         unsigned getId() const { return id; }
+		
+    private:
+        unsigned id = 0;
+
+        void createProgram(const Shader& vertexShader, const Shader& fragmentShader);
+
+        std::string getProgramInfoLog(const GLuint programId);
+        unsigned getUniformId(const char* name) const;
     };
 }

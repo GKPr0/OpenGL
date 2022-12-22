@@ -14,7 +14,7 @@ namespace Engine
 
 	class Mesh : public Renderable {
 	public:
-		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, const Texture& texture);
+		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, Texture* texture);
 
 		// Inherited via Renderable
 		virtual void render(Program& program) override;
@@ -22,6 +22,6 @@ namespace Engine
 	private:
 		std::vector<MeshVertex> vertices;
 		std::vector<GLuint> indices;	
-		Texture texture;
+		Texture* texture;
 	};
 }

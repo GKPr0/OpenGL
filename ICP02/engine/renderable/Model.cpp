@@ -2,12 +2,12 @@
 #include "../support/OBJloader.h"
 
 namespace Engine {
-	Model::Model(const std::string& path, const Texture& texture)
+	Model::Model(const std::string& path, Texture* texture)
 	{
 		load(path, texture);
 	}
 
-	void Model::load(const std::string& path, const Texture& texture)
+	void Model::load(const std::string& path, Texture* texture)
 	{
 		std::vector<glm::vec3> positions;
 		std::vector<glm::vec2> texPositions;
@@ -19,7 +19,7 @@ namespace Engine {
 		if (!status)
 		{
 			std::cerr << "Failed to load obj from: " << path << std::endl;
-			return; // TODO Throw error or clsoe app;
+			exit(EXIT_FAILURE);
 		}
 
 		std::vector<MeshVertex> vertices;

@@ -36,29 +36,27 @@ int main()
 	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,50.0f));
 
 	Engine::ProgramsManager programs = Engine::ProgramsManager();
-	auto objProg = Engine::Program("resources/shaders/object.vert", "resources/shaders/object.frag"); //Why this dont work if created inside prog manager?
-	programs.addProgram("object", objProg);
-	auto skyBoxProg = Engine::Program("resources/shaders/skyBox.vert", "resources/shaders/skyBox.frag");
-	programs.addProgram("skybox", skyBoxProg);
+	programs.addProgram("object", "resources/shaders/object.vert", "resources/shaders/object.frag");
+	programs.addProgram("skybox", "resources/shaders/skyBox.vert", "resources/shaders/skyBox.frag");
 
 	Engine::TexturesManager textures = Engine::TexturesManager();
-	textures.addTexture("box", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/box_rgb888.png");
-	textures.addTexture("fur", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/fur.jpg");
-	textures.addTexture("steel", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/steel.jpg");
-	textures.addTexture("diamond_ore", "D:/Programming/Cpp/ICP04/ICP02/resources/textures/mc_diamond_ore.png");
+	textures.addTexture("box", "resources/textures/box_rgb888.png");
+	textures.addTexture("fur", "resources/textures/fur.jpg");
+	textures.addTexture("steel", "resources/textures/steel.jpg");
+	textures.addTexture("diamond_ore", "resources/textures/mc_diamond_ore.png");
 	
 	scene = new Engine::Scene(*window, *camera, programs);
 
 	
 	Engine::SkyBox skyBox = Engine::SkyBox(std::vector<std::string>
-		{
-			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/right.jpg",
-			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/left.jpg",
-			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/top.jpg",
-			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/bottom.jpg",
-			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/front.jpg",
-			"D:/Programming/Cpp/ICP04/ICP02/resources/skybox/back.jpg"
-		});
+	{
+		"resources/skybox/right.jpg",
+		"resources/skybox/left.jpg",
+		"resources/skybox/top.jpg",
+		"resources/skybox/bottom.jpg",
+		"resources/skybox/front.jpg",
+		"resources/skybox/back.jpg"
+	});
 	skyBox.scale(glm::vec3(500.0f));
 	scene->setSkyBox(skyBox);
 
@@ -93,9 +91,6 @@ int main()
 
 void loop() 
 {
-	/*for (auto object : scene->getObjects())
-		object->rotateY(1.0f);*/
-
 	scene->render();
 }
 

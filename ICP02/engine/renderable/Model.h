@@ -6,9 +6,9 @@ namespace Engine
 {
 	class Model: public Renderable {
 	public:
-		Model(const std::string& path, const Texture& texture);
+		Model(const std::string& path, Texture* texture);
 
-		void load(const std::string& path, const Texture& texture);
+		void load(const std::string& path, Texture* texture);
 		
 		virtual void render(Program& program) override;
 	private:

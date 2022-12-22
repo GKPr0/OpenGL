@@ -91,14 +91,4 @@ namespace Engine
     {
         glUniformMatrix4fv(getUniformId(name), 1, GL_FALSE, glm::value_ptr(mat));
     }
-
-    Program::~Program()
-    {
-        clear();
-    }
-
-    void Program::clear()
-    {
-        //glDeleteProgram(id); //TODO some how i badyl manage programs
-    }
 }

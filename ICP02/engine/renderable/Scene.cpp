@@ -10,12 +10,12 @@ namespace Engine {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0, 0, 0, 1);
 		
-		Program objectProgram = programs.getProgram("object");
-		renderLights(objectProgram);
-		renderObjects(objectProgram);
+		Program* objectProgram = programs.getProgram("object");
+		renderLights(*objectProgram);
+		renderObjects(*objectProgram);
 
-		Program skyBoxProgram = programs.getProgram("skybox");
-		renderSkyBox(skyBoxProgram);
+		Program* skyBoxProgram = programs.getProgram("skybox");
+		renderSkyBox(*skyBoxProgram);
 	}
 	
 	void Scene::renderObjects(Program& program)

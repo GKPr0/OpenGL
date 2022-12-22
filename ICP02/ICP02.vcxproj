@@ -180,12 +180,18 @@
     <None Include="resources\shaders\object.vert" />
     <None Include="resources\shaders\skyBox.frag" />
     <None Include="resources\shaders\skyBox.vert" />
-    <None Include="resources\video.mkv" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\HSV-MAP.png" />
-    <Image Include="resources\lightbulb.jpg" />
-    <Image Include="resources\lightbulb_hsv.jpg" />
+    <Image Include="resources\skybox\back.jpg" />
+    <Image Include="resources\skybox\bottom.jpg" />
+    <Image Include="resources\skybox\front.jpg" />
+    <Image Include="resources\skybox\left.jpg" />
+    <Image Include="resources\skybox\right.jpg" />
+    <Image Include="resources\skybox\top.jpg" />
+    <Image Include="resources\textures\box_rgb888.png" />
+    <Image Include="resources\textures\fur.jpg" />
+    <Image Include="resources\textures\mc_diamond_ore.png" />
+    <Image Include="resources\textures\steel.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

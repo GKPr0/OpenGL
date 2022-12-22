@@ -46,6 +46,12 @@
     <Filter Include="Resource Files\shaders">
       <UniqueIdentifier>{71ace98b-ea9c-4e91-86ca-4a51b748b62e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{d0002a4c-fd18-40ea-b42d-1f852ee66037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\skybox">
+      <UniqueIdentifier>{4ac89931-16ed-40c4-aad8-43c8c6f25d8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\base\Window.cpp">
@@ -142,9 +148,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\video.mkv">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="resources\shaders\object.frag">
       <Filter>Resource Files\shaders</Filter>
     </None>
@@ -159,14 +162,35 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resources\HSV-MAP.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\textures\box_rgb888.png">
+      <Filter>Resource Files\textures</Filter>
     </Image>
-    <Image Include="resources\lightbulb.jpg">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\textures\fur.jpg">
+      <Filter>Resource Files\textures</Filter>
     </Image>
-    <Image Include="resources\lightbulb_hsv.jpg">
-      <Filter>Resource Files</Filter>
+    <Image Include="resources\textures\mc_diamond_ore.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="resources\textures\steel.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="resources\skybox\back.jpg">
+      <Filter>Resource Files\skybox</Filter>
+    </Image>
+    <Image Include="resources\skybox\bottom.jpg">
+      <Filter>Resource Files\skybox</Filter>
+    </Image>
+    <Image Include="resources\skybox\front.jpg">
+      <Filter>Resource Files\skybox</Filter>
+    </Image>
+    <Image Include="resources\skybox\left.jpg">
+      <Filter>Resource Files\skybox</Filter>
+    </Image>
+    <Image Include="resources\skybox\right.jpg">
+      <Filter>Resource Files\skybox</Filter>
+    </Image>
+    <Image Include="resources\skybox\top.jpg">
+      <Filter>Resource Files\skybox</Filter>
     </Image>
   </ItemGroup>
 </Project>
