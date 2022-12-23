@@ -21,6 +21,7 @@ Engine::SpotLight* flashLight;
 
 void loop();
 void scrollCallback(GLFWwindow* glfWindow, double xoffset, double yoffset);
+void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int mods);
 void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos);
 void resizeCallback(GLFWwindow* glfWindow, int width, int height);
 void inputCallback(GLFWwindow* glfWindow);
@@ -32,6 +33,7 @@ int main()
 	window->setRenderMethod(loop);
 	window->setInputCallback(inputCallback);
 	window->setResizeCallback(resizeCallback);
+	window->setKeyCallback(keyCallback);
 	window->setScrollCallback(scrollCallback);
 	window->setMouseMoveCallback(mouseMoveCallback);
 	window->setInputMode(GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -123,6 +125,15 @@ void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos)
 	camera->rotate(-xOffset, yOffset);
 }
 
+void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		window->exit();
+
+	if (key == GLFW_KEY_F && action == GLFW_PRESS)
+		window->toggleFullScreen();
+}
+
 void resizeCallback(GLFWwindow* glfWindow, int width, int height)
 {
 	window->setSize(width, height);
@@ -130,6 +141,7 @@ void resizeCallback(GLFWwindow* glfWindow, int width, int height)
 
 void inputCallback(GLFWwindow* glfWindow)
 {
+	
 	if (glfwGetKey(glfWindow, GLFW_KEY_UP) == GLFW_PRESS ||
 		glfwGetKey(glfWindow, GLFW_KEY_W) == GLFW_PRESS) {
 		camera->moveUp();

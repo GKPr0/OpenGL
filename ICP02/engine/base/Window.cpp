@@ -52,7 +52,8 @@ namespace Engine {
 
 	void Window::exit() const
 	{
-		glfwTerminate();
+		if(window != nullptr)
+			glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
 
 	void Window::setTitle(const std::string& title)
@@ -66,5 +67,28 @@ namespace Engine {
 		this->width = width;
 		this->height = height;
 		glViewport(0, 0, width, height);
+	}
+
+	void Window::toggleFullScreen()
+	{
+		static int windowHeight, windowWidth, xPos, yPos;
+		bool isFullscreen = glfwGetWindowMonitor(window) != nullptr;
+		if (!isFullscreen)
+		{
+			//Save current h/w
+			glfwGetWindowSize(window, &windowWidth, &windowHeight);
+			glfwGetWindowPos(window, &xPos, &yPos);
+
+			GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+			// Get resolution of monitor
+			const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+			// Switch to full screen
+			glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+		}
+		else
+		{
+			glfwSetWindowMonitor(window, nullptr, xPos, yPos,
+				windowWidth, windowHeight, 0);
+		}
 	}
 }

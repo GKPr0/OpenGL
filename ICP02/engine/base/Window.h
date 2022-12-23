@@ -40,6 +40,8 @@ namespace Engine {
         void setMouseClickCallback(void (*func)(GLFWwindow*, int, int, int)) { glfwSetMouseButtonCallback(window, func); }
         void setScrollCallback(void (*func)(GLFWwindow*, double, double)) { glfwSetScrollCallback(window, func); }
 
+        void toggleFullScreen();
+
         unsigned getWidth() const { return width; }
         unsigned getHeight() const { return height; }
         std::string getTitle() const { return title; }
