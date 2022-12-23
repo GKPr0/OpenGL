@@ -30,12 +30,14 @@ namespace Engine {
 
         // Light settings
         glm::vec3 lightPosition = glm::vec3(0.0f);
-        glm::vec3 ambientColor = glm::vec3(0.2f, 0.2f, 0.2f);
-        glm::vec3 diffuseColor = glm::vec3(0.1f, 0.0f, 0.0f);
+        glm::vec3 ambientColor = glm::vec3(0.1f, 0.1f, 0.1f);
+        glm::vec3 diffuseColor = glm::vec3(0.1f, 0.1f, 0.1f);
         glm::vec3 specualrColor = glm::vec3(1.0f);
         float constantAttenuation = 1.0f;
-        float linearAttenuation = 0.0002f;
-        float quadraticAttenuation = 0.0007f;
+        float linearAttenuation = 0.0007f;
+        float quadraticAttenuation = 0.00017f;
+        float cutOff = glm::cos(glm::radians(12.5f));
+        float outerCutOff = glm::cos(glm::radians(15.0f));
     };
 
     inline Settings settings;

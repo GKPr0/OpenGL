@@ -11,10 +11,13 @@
 #include "engine/renderable/Scene.h"
 #include "engine/Engine.h"
 #include "engine/base/TexturesManager.h"
+#include "engine/renderable/SpotLight.h"
+#include "engine/renderable/PointLight.h"
 
 Engine::Window* window;
 Engine::Scene* scene;
 Engine::Camera* camera;
+Engine::SpotLight* flashLight;
 
 void loop();
 void scrollCallback(GLFWwindow* glfWindow, double xoffset, double yoffset);
@@ -60,8 +63,12 @@ int main()
 	skyBox.scale(glm::vec3(500.0f));
 	scene->setSkyBox(skyBox);
 
-	Engine::Light light = Engine::Light(glm::vec3(0.0f, 100.0f, 0.0f));
-	scene->addLight(light);
+	Engine::PointLight pointLight = Engine::PointLight(glm::vec3(5.0f, 5.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.1f));
+	scene->addLight(pointLight);
+
+	flashLight = new Engine::SpotLight();
+	scene->addLight(*flashLight);
+
 
 	Engine::Model teapot = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures.getTexture("steel"));
 	scene->addObject(teapot);
@@ -91,6 +98,9 @@ int main()
 
 void loop() 
 {
+	flashLight->setPosition(camera->getPosition());
+	flashLight->setDirection(camera->getDirection());
+
 	scene->render();
 }
 

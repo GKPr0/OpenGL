@@ -148,12 +148,13 @@
     <ClCompile Include="engine\base\Texture.cpp" />
     <ClCompile Include="engine\base\Window.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
-    <ClCompile Include="engine\renderable\Light.cpp" />
     <ClCompile Include="engine\renderable\Mesh.cpp" />
     <ClCompile Include="engine\renderable\Model.cpp" />
+    <ClCompile Include="engine\renderable\PointLight.cpp" />
     <ClCompile Include="engine\renderable\Renderable.cpp" />
     <ClCompile Include="engine\renderable\Scene.cpp" />
     <ClCompile Include="engine\renderable\SkyBox.cpp" />
+    <ClCompile Include="engine\renderable\SpotLight.cpp" />
     <ClCompile Include="engine\support\OBJloader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -169,9 +170,11 @@
     <ClInclude Include="engine\renderable\Light.h" />
     <ClInclude Include="engine\renderable\Mesh.h" />
     <ClInclude Include="engine\renderable\Model.h" />
+    <ClInclude Include="engine\renderable\PointLight.h" />
     <ClInclude Include="engine\renderable\Renderable.h" />
     <ClInclude Include="engine\renderable\Scene.h" />
     <ClInclude Include="engine\renderable\SkyBox.h" />
+    <ClInclude Include="engine\renderable\SpotLight.h" />
     <ClInclude Include="engine\Settings.h" />
     <ClInclude Include="engine\support\OBJloader.h" />
   </ItemGroup>

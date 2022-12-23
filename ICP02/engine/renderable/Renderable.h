@@ -20,6 +20,8 @@ namespace Engine
 		void rotateY(const float& angle);
 		void rotateZ(const float& angle);
 
+		void setPosition(const glm::vec3& position) { mPosition = position; }
+
 	protected:
 		GLuint vao;
 

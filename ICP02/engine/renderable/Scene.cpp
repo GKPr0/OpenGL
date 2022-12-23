@@ -37,6 +37,7 @@ namespace Engine {
 			return;
 
 		program.use();
+		program.setVec3("cameraPos", camera.getPosition());
 		for (unsigned i = 0; i < lights.size(); ++i)
 		{
 			lights[i]->render(program);

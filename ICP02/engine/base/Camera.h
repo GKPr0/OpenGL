@@ -32,6 +32,9 @@ namespace Engine {
 
 		const glm::mat4 getProjectionMatrix() const;
 		const glm::mat4 getViewMatrix() const;
+		
+		const glm::vec3 getPosition() const { return position; }
+		const glm::vec3 getDirection() const { return direction; }
 
 	private:
 		Window& window;

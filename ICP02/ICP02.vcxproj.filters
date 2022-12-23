@@ -52,6 +52,12 @@
     <Filter Include="Resource Files\skybox">
       <UniqueIdentifier>{4ac89931-16ed-40c4-aad8-43c8c6f25d8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Renderable\Lights">
+      <UniqueIdentifier>{579f9620-0f94-4549-a8ef-0ffee46971d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Renderable\Lights">
+      <UniqueIdentifier>{aa839027-3e64-4f82-8466-d52a47f89c15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\base\Window.cpp">
@@ -87,14 +93,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\renderable\Light.cpp">
-      <Filter>Source Files\Engine\Renderable</Filter>
-    </ClCompile>
     <ClCompile Include="engine\base\Texture.cpp">
       <Filter>Source Files\Engine\Base</Filter>
     </ClCompile>
     <ClCompile Include="engine\renderable\SkyBox.cpp">
       <Filter>Source Files\Engine\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\PointLight.cpp">
+      <Filter>Source Files\Engine\Renderable\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\SpotLight.cpp">
+      <Filter>Source Files\Engine\Renderable\Lights</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +143,6 @@
     <ClInclude Include="engine\base\ProgramsManager.h">
       <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="engine\renderable\Light.h">
-      <Filter>Header Files\Engine\Renderable</Filter>
-    </ClInclude>
     <ClInclude Include="engine\base\Texture.h">
       <Filter>Header Files\Engine\Base</Filter>
     </ClInclude>
@@ -145,6 +151,15 @@
     </ClInclude>
     <ClInclude Include="engine\renderable\SkyBox.h">
       <Filter>Header Files\Engine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\Light.h">
+      <Filter>Header Files\Engine\Renderable\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\PointLight.h">
+      <Filter>Header Files\Engine\Renderable\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderable\SpotLight.h">
+      <Filter>Header Files\Engine\Renderable\Lights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
