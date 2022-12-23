@@ -17,12 +17,17 @@ namespace Engine
 					const float& cutOff = settings.cutOff,
 					const float& outerCutOff = settings.outerCutOff);
 
-		virtual void render(Program& program) override;
-		
-		static unsigned count;
+	
+		void toggle() { isOn = !isOn; }
 
 		void setDirection(const glm::vec3& direction) { this->direction = direction; }
+
+		virtual void render(Program& program) override;
+
+		static unsigned count;
+
 	private:
+		bool isOn;
 		glm::vec3 direction;
 		float cutOff;
 		float outerCutOff;

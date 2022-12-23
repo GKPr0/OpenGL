@@ -30,6 +30,8 @@ struct SpotLight {
     float constantAttenuation;
     float linearAttenuation;
     float quadraticAttenuation;
+
+    bool isOn;
 };
 
 
@@ -49,8 +51,8 @@ in vec3 Normal;
 in vec2 TexCoords;
 
 
-vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
-vec4 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main()
 {
@@ -58,16 +60,16 @@ void main()
     vec3 norm = normalize(Normal);
     vec3 cameraDir = normalize(cameraPos - FragPos);
 
-    vec4 light = CalcSpotLight(spotLights[0], norm, FragPos , cameraDir);
+    vec3 light = CalcSpotLight(spotLights[0], norm, FragPos , cameraDir);
     light += CalcPointLight(pointLights[0], norm, FragPos , cameraDir);
 
     vec4 tex = texture(tex0, TexCoords);
 
-    FragColor = tex + light;
+    FragColor = tex + vec4(light,1.0f);
 }
 
 
-vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
 	vec3 reflectDir = reflect(-lightDir, normal);
@@ -85,11 +87,14 @@ vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     diffuse *= attenuation;
     specular *= attenuation;
 	
-    return vec4(ambient + diffuse + specular, 1.0f);
+    return ambient + diffuse + specular;
 }
 
-vec4 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
+vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
+    if(light.isOn == false)
+        return vec3(0.0f);
+
     vec3 lightDir = normalize(light.position - fragPos);
 	vec3 reflectDir = reflect(-lightDir, normal);
 
@@ -111,5 +116,5 @@ vec4 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     diffuse *= attenuation * intensity;
     specular *= attenuation * intensity;
 
-    return vec4(ambient + diffuse + specular, 1.0f);
+    return ambient + diffuse + specular;
 }

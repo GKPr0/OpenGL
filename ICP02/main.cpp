@@ -132,6 +132,9 @@ void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int m
 
 	if (key == GLFW_KEY_F && action == GLFW_PRESS)
 		window->toggleFullScreen();
+
+	if (key == GLFW_KEY_R && action == GLFW_PRESS)
+		flashLight->toggle();
 }
 
 void resizeCallback(GLFWwindow* glfWindow, int width, int height)

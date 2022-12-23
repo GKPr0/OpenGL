@@ -52,6 +52,11 @@ namespace Engine
         return glGetUniformLocation(id, name);
     }
 
+    void Program::setBool(const char* name, bool value) const
+    {
+        setInt(name, value);
+    }
+
     void Program::setInt(const char* name, int i) const
     {
         glUniform1i(getUniformId(name), i);

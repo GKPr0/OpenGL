@@ -37,5 +37,6 @@ namespace Engine
 		program.setFloat(std::string(light + ".quadraticAttenuation").c_str(), quadraticAttenuation);
 		program.setFloat(std::string(light + ".cutOff").c_str(), cutOff);
 		program.setFloat(std::string(light + ".outerCutOff").c_str(), outerCutOff);
+		program.setBool(std::string(light + ".isOn").c_str(), isOn);
 	}
 }
