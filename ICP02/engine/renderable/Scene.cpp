@@ -46,7 +46,7 @@ namespace Engine {
 
 	void Scene::renderSkyBox(Program& program)
 	{
-		if (program.getId() == 0)
+		if (program.getId() == 0 || skyBox == NULL)
 			return;
 
 		program.use();

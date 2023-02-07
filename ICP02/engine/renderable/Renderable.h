@@ -21,6 +21,7 @@ namespace Engine
 		void rotateZ(const float& angle);
 
 		void setPosition(const glm::vec3& position) { mPosition = position; }
+		glm::vec3 getPosition() { return mPosition; }
 
 	protected:
 		GLuint vao;

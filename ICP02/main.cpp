@@ -19,12 +19,20 @@ Engine::Scene* scene;
 Engine::Camera* camera;
 Engine::SpotLight* flashLight;
 
+Engine::PointLight* sunLight;
+Engine::Model* sun;
+
+std::vector<Engine::Model*> boxes;
+
 void loop();
 void scrollCallback(GLFWwindow* glfWindow, double xoffset, double yoffset);
 void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int mods);
 void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos);
 void resizeCallback(GLFWwindow* glfWindow, int width, int height);
 void inputCallback(GLFWwindow* glfWindow);
+
+void sunOrbitMotion();
+void oscilateBoxes();
 
 int main()
 {
@@ -65,14 +73,22 @@ int main()
 	skyBox.scale(glm::vec3(500.0f));
 	scene->setSkyBox(skyBox);
 
-	Engine::PointLight pointLight = Engine::PointLight(glm::vec3(5.0f, 5.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.1f));
-	scene->addLight(pointLight);
+	sunLight = new Engine::PointLight();
+	scene->addLight(*sunLight);
 
 	flashLight = new Engine::SpotLight();
+	flashLight->setDiffuseColor(glm::vec3(0.1f, 0.5f, 0.5f));
+	flashLight->setSpecularColor(glm::vec3(0.4f, 0.8f, 0.8f));
+	flashLight->setLinearAttenuation(0.001f);
+	flashLight->setQuadraticAttenuation(0.0005f);
 	scene->addLight(*flashLight);
 
 
-	Engine::Model teapot = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures.getTexture("steel"));
+	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures.getTexture("fur"));
+	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
+	scene->addObject(*sun);
+
+	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures.getTexture("steel"));
 	scene->addObject(teapot);
 
 	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures.getTexture("box"));
@@ -84,14 +100,15 @@ int main()
 	bunny.translate(glm::vec3(-20.0f, 0.0f, 20.0f));
 	scene->addObject(bunny);
 
-	std::vector<std::string> boxes{"box", "diamond_ore", "fur", "steel"};
+	std::vector<std::string> boxesTypes{"box", "diamond_ore", "fur", "steel","box", "diamond_ore", "fur", "steel" ,"box", "diamond_ore", "fur", "steel" };
 	float x = 0.0f;
-	for (int i = 0; i < boxes.size(); i++)
+	for (int i = 0; i < boxesTypes.size(); i++)
 	{
-		Engine::Model* box = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures.getTexture(boxes[i]));
+		Engine::Model* box = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures.getTexture(boxesTypes[i]));
 		box->translate(glm::vec3(x, 0.0f, 100.0f));
 		box->scale(glm::vec3(15.0f, 15.0f, 15.0f));
 		scene->addObject(*box);
+		boxes.push_back(box);
 		x += 30;
 	}
 	
@@ -102,6 +119,9 @@ void loop()
 {
 	flashLight->setPosition(camera->getPosition());
 	flashLight->setDirection(camera->getDirection());
+
+	sunOrbitMotion();
+	oscilateBoxes();
 
 	scene->render();
 }
@@ -163,5 +183,44 @@ void inputCallback(GLFWwindow* glfWindow)
 	if (glfwGetKey(glfWindow, GLFW_KEY_LEFT) == GLFW_PRESS ||
 		glfwGetKey(glfWindow, GLFW_KEY_A) == GLFW_PRESS) {
 		camera->moveLeft();
+	}
+}
+
+void sunOrbitMotion()
+{
+	static float angle;
+
+	angle += 0.5f;
+	if (angle > 360)
+		angle = 0;
+	auto radius = 1000;
+	auto x = radius * sin(3.14 * 2 * angle / 360);
+	auto z = radius * cos(3.14 * 2 * angle / 360);
+
+	auto positon = glm::vec3(x, z, 0.0f) + camera->getPosition();
+
+	sunLight->setPosition(positon);
+	sun->setPosition(positon);
+}
+
+void oscilateBoxes()
+{
+	static float angle;
+	const float amplitude = 10;
+
+	float angle_step = 360.0f / (boxes.size() * 250);
+	float phase = 0.0f;
+	float phase_step = 360.0f / boxes.size();
+	for (auto box :boxes)
+	{
+		angle += angle_step;
+		if (angle > 360)
+			angle = 0;
+	
+		auto positon = box->getPosition();
+		positon.y = amplitude * sin(3.14 * 2 * (angle + phase) / 360);
+
+		box->setPosition(positon);
+		phase += phase_step;
 	}
 }

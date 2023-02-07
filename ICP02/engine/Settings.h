@@ -34,8 +34,8 @@ namespace Engine {
         glm::vec3 diffuseColor = glm::vec3(0.1f, 0.1f, 0.1f);
         glm::vec3 specualrColor = glm::vec3(1.0f);
         float constantAttenuation = 1.0f;
-        float linearAttenuation = 0.0007f;
-        float quadraticAttenuation = 0.00017f;
+        float linearAttenuation = 0.0015f;
+        float quadraticAttenuation = 0.0f;
         float cutOff = glm::cos(glm::radians(12.5f));
         float outerCutOff = glm::cos(glm::radians(15.0f));
     };
