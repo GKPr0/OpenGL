@@ -46,6 +46,7 @@ namespace Engine {
         unsigned getHeight() const { return height; }
         std::string getTitle() const { return title; }
         bool isReady() const { return window != nullptr; }
+        GLFWwindow* getWindow() const { return window; }
     };
 }
 

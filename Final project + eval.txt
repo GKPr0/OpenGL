@@ -14,7 +14,7 @@ EXTRAS:
 * height map textured by height, proper player height coords
 * particles
 * scripting (useful)
-* audio
+OK * audio
 
 INSTAFAIL:
 * using GLUT
@@ -32,3 +32,5 @@ F = "4"     0   50
 
 
 Send full installation procedures and full project in archive, github, gitlab, ...
+
+Nainstalovat SFML

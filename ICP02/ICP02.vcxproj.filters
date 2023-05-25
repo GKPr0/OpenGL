@@ -58,6 +58,15 @@
     <Filter Include="Source Files\Engine\Renderable\Lights">
       <UniqueIdentifier>{aa839027-3e64-4f82-8466-d52a47f89c15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Audio">
+      <UniqueIdentifier>{0782d694-d7a4-4915-bfe3-a0d714c66d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Audio">
+      <UniqueIdentifier>{e458e93b-da9e-4d95-8b25-f90133aae939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\sounds">
+      <UniqueIdentifier>{46c948b1-6c0d-4991-ad4f-874132af20ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\base\Window.cpp">
@@ -104,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="engine\renderable\SpotLight.cpp">
       <Filter>Source Files\Engine\Renderable\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\audio\Audio.cpp">
+      <Filter>Source Files\Engine\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +173,12 @@
     <ClInclude Include="engine\renderable\SpotLight.h">
       <Filter>Header Files\Engine\Renderable\Lights</Filter>
     </ClInclude>
+    <ClInclude Include="engine\audio\Audio.h">
+      <Filter>Header Files\Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\audio\AudioManager.h">
+      <Filter>Header Files\Engine\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\object.frag">
@@ -213,5 +231,16 @@
     <Image Include="resources\textures\window.png">
       <Filter>Resource Files\textures</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\sounds\minecraft_click.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="resources\sounds\minecraft_oof.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
+    <Media Include="resources\sounds\minecraft_walk.wav">
+      <Filter>Resource Files\sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>

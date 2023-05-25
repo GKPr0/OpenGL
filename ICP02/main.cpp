@@ -6,6 +6,12 @@
 #include <glm/ext.hpp>
 #include <cmath>
 
+//Audio
+#include <Mmsystem.h>
+#include <mciapi.h>
+#pragma comment(lib, "Winmm.lib")
+
+//Engine
 #include "engine/base/Window.h"
 #include "engine/base/Camera.h"
 #include "engine/renderable/Scene.h"
@@ -13,10 +19,16 @@
 #include "engine/base/TexturesManager.h"
 #include "engine/renderable/SpotLight.h"
 #include "engine/renderable/PointLight.h"
+#include "engine/audio/AudioManager.h"
 
 Engine::Window* window;
 Engine::Scene* scene;
 Engine::Camera* camera;
+
+Engine::ProgramsManager* programs;
+Engine::TexturesManager* textures;
+Engine::AudioManager* audios;
+
 std::vector<Engine::SpotLight*> flashLights;
 
 Engine::PointLight* sunLight;
@@ -46,22 +58,26 @@ int main()
 	window->setScrollCallback(scrollCallback);
 	window->setMouseMoveCallback(mouseMoveCallback);
 	window->setInputMode(GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	
+
 	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,50.0f));
 
-	Engine::ProgramsManager programs = Engine::ProgramsManager();
-	programs.addProgram("object", "resources/shaders/object.vert", "resources/shaders/object.frag");
-	programs.addProgram("skybox", "resources/shaders/skyBox.vert", "resources/shaders/skyBox.frag");
+	programs = new Engine::ProgramsManager();
+	programs->addProgram("object", "resources/shaders/object.vert", "resources/shaders/object.frag");
+	programs->addProgram("skybox", "resources/shaders/skyBox.vert", "resources/shaders/skyBox.frag");
 
-	Engine::TexturesManager textures = Engine::TexturesManager();
-	textures.addTexture("box", "resources/textures/box_rgb888.png");
-	textures.addTexture("fur", "resources/textures/fur.jpg");
-	textures.addTexture("steel", "resources/textures/steel.jpg");
-	textures.addTexture("diamond_ore", "resources/textures/mc_diamond_ore.png");
-	textures.addTexture("grass", "resources/textures/grass.png");
-	textures.addTexture("window", "resources/textures/window.png");
+	textures = new Engine::TexturesManager();
+	textures->addTexture("box", "resources/textures/box_rgb888.png");
+	textures->addTexture("fur", "resources/textures/fur.jpg");
+	textures->addTexture("steel", "resources/textures/steel.jpg");
+	textures->addTexture("diamond_ore", "resources/textures/mc_diamond_ore.png");
+	textures->addTexture("grass", "resources/textures/grass.png");
+	textures->addTexture("window", "resources/textures/window.png");
+
+	audios = new Engine::AudioManager();
+	audios->addAudio("oof", "resources/sounds/minecraft_oof.wav");
+	audios->addAudio("toggle", "resources/sounds/light_switch.wav");
 	
-	scene = new Engine::Scene(*window, *camera, programs);
+	scene = new Engine::Scene(*window, *camera, *programs);
 
 	Engine::SkyBox skyBox = Engine::SkyBox(std::vector<std::string>
 	{
@@ -94,34 +110,33 @@ int main()
 	scene->addLight(*flashLight2);
 	flashLights.push_back(flashLight2);
 
-	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures.getTexture("fur"));
+	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("fur"));
 	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(*sun);
-
-	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures.getTexture("steel"));
+	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
 	scene->addObject(teapot);
 
-	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures.getTexture("box"));
+	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("box"));
 	sphere.translate(glm::vec3(20.0f, 0.0f, 20.0f));
 	sphere.scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(sphere);
 
-	Engine::Model grass = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("grass"));
+	Engine::Model grass = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("grass"));
 	grass.scale(glm::vec3(10.0f, 10.0f, 1.0f));
 	grass.translate(glm::vec3(0.0f, 10.0f, 10.0f));
 	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
 
-	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures.getTexture("fur"));
+	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures->getTexture("fur"));
 	bunny.translate(glm::vec3(5.0f, 5.0f, 20.0f));
 	scene->addObject(bunny);
 
-	Engine::Model windowModel = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("window"));
+	Engine::Model windowModel = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("window"));
 	windowModel.scale(glm::vec3(10.0f, 10.0f, 10.0f));
 	windowModel.translate(glm::vec3(0.0f, 0.0f, 25.0f));
 	scene->addObject(windowModel);
 
-	Engine::Model windowModel2 = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("window"));
+	Engine::Model windowModel2 = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("window"));
 	windowModel2.scale(glm::vec3(10.0f, 10.0f, 10.0f));
 	windowModel2.translate(glm::vec3(0.0f, 0.0f, 15.0f));
 	scene->addObject(windowModel2);
@@ -130,7 +145,7 @@ int main()
 	float x = 0.0f;
 	for (int i = 0; i < boxesTypes.size(); i++)
 	{
-		Engine::Model* box = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures.getTexture(boxesTypes[i]));
+		Engine::Model* box = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures->getTexture(boxesTypes[i]));
 		box->translate(glm::vec3(x, 0.0f, 100.0f));
 		box->scale(glm::vec3(15.0f, 15.0f, 15.0f));
 		scene->addObject(*box);
@@ -172,14 +187,21 @@ void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos)
 void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	{
+		audios->getAudio("oof")->playBlocking();
 		window->exit();
+	}
 
 	if (key == GLFW_KEY_F && action == GLFW_PRESS)
 		window->toggleFullScreen();
 
 	if (key == GLFW_KEY_R && action == GLFW_PRESS)
-		for(auto flashLight : flashLights)
+	{
+		audios->getAudio("toggle")->playNonBlocking();
+		for (auto flashLight : flashLights)
 			flashLight->toggle();
+	}
+		
 }
 
 void resizeCallback(GLFWwindow* glfWindow, int width, int height)
