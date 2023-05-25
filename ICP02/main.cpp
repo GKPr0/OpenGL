@@ -46,6 +46,7 @@ void inputCallback(GLFWwindow* glfWindow);
 void moveFlashLights();
 void sunOrbitMotion();
 void oscilateBoxes();
+bool checkCollisison();
 
 int main()
 {
@@ -59,7 +60,7 @@ int main()
 	window->setMouseMoveCallback(mouseMoveCallback);
 	window->setInputMode(GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,50.0f));
+	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,0.0f));
 
 	programs = new Engine::ProgramsManager();
 	programs->addProgram("object", "resources/shaders/object.vert", "resources/shaders/object.frag");
@@ -113,6 +114,7 @@ int main()
 	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("fur"));
 	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(*sun);
+
 	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
 	scene->addObject(teapot);
 
@@ -211,7 +213,7 @@ void resizeCallback(GLFWwindow* glfWindow, int width, int height)
 
 void inputCallback(GLFWwindow* glfWindow)
 {
-	
+	auto basePosition = camera->getPosition();
 	if (glfwGetKey(glfWindow, GLFW_KEY_UP) == GLFW_PRESS ||
 		glfwGetKey(glfWindow, GLFW_KEY_W) == GLFW_PRESS) {
 		camera->moveUp();
@@ -231,6 +233,9 @@ void inputCallback(GLFWwindow* glfWindow)
 		glfwGetKey(glfWindow, GLFW_KEY_A) == GLFW_PRESS) {
 		camera->moveLeft();
 	}
+
+	if(checkCollisison())
+		camera->setPosition(basePosition);
 }
 
 void moveFlashLights()
@@ -286,4 +291,14 @@ void oscilateBoxes()
 		box->setPosition(positon);
 		phase += phase_step;
 	}
+}
+
+bool checkCollisison()
+{
+	auto cameraPosition = camera->getPosition();
+	for (auto box : boxes)
+		if (box->checkCollision(cameraPosition))
+			return true;
+		
+	return false;
 }

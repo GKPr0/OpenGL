@@ -16,8 +16,9 @@ namespace Engine
 	public:
 		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, Texture* texture);
 
-		// Inherited via Renderable
 		virtual void render(Program& program) override;
+
+		std::vector<MeshVertex> getVertices() const { return vertices; }
 
 	private:
 		std::vector<MeshVertex> vertices;

@@ -33,6 +33,7 @@ namespace Engine {
 		const glm::mat4 getProjectionMatrix() const;
 		const glm::mat4 getViewMatrix() const;
 		
+		void setPosition(const glm::vec3& position) { this->position = position; }
 		const glm::vec3 getPosition() const { return position; }
 		const glm::vec3 getDirection() const { return direction; }
 

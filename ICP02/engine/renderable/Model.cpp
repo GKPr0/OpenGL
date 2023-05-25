@@ -34,6 +34,50 @@ namespace Engine {
 		meshes.push_back(mesh);
 
 		this->texture = texture;
+		calculateBoundingBox();
+	}
+
+	void Model::translate(const glm::vec3& translate)
+	{
+		mPosition += translate;
+		calculateBoundingBox();
+	}
+
+	void Model::scale(const glm::vec3& vec)
+	{
+		mScale = vec;
+		calculateBoundingBox();
+	}
+
+	void Model::rotate(const float& angle, const glm::vec3& vec)
+	{
+		mRotation = glm::rotate(mRotation, glm::radians(angle), vec);
+		calculateBoundingBox();
+	}
+
+	void Model::calculateBoundingBox()
+	{
+		glm::mat4x4 modelMatrix = getModelMatrix();
+
+		aabbMin = aabbMax = modelMatrix * glm::vec4(meshes[0].getVertices()[0].position, 1.0);
+		for (auto mesh : meshes)
+		{
+			for (const auto& vertex : mesh.getVertices())
+			{
+				glm::vec3 transformedPosition = modelMatrix * glm::vec4(vertex.position, 1.0);
+				aabbMin = glm::min(aabbMin, transformedPosition);
+				aabbMax = glm::max(aabbMax, transformedPosition);
+			}
+		}
+	}
+
+	bool Model::checkCollision(const glm::vec3& position) const
+	{
+		bool xCollision = (position.x >= aabbMin.x && position.x <= aabbMax.x);
+		bool yCollision = (position.y >= aabbMin.y && position.y <= aabbMax.y);
+		bool zCollision = (position.z >= aabbMin.z && position.z <= aabbMax.z);
+
+		return xCollision && yCollision && zCollision;
 	}
 
 	void Model::render(Program& program)
