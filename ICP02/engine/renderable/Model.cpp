@@ -1,5 +1,6 @@
 #include "Model.h"
 #include "../support/OBJloader.h"
+#include <map>
 
 namespace Engine {
 	Model::Model(const std::string& path, Texture* texture)

@@ -179,8 +179,6 @@
     <ClInclude Include="engine\support\OBJloader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\blend.frag" />
-    <None Include="resources\shaders\blend.vert" />
     <None Include="resources\shaders\object.frag" />
     <None Include="resources\shaders\object.vert" />
     <None Include="resources\shaders\skyBox.frag" />

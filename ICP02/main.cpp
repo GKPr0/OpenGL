@@ -106,21 +106,25 @@ int main()
 	sphere.scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(sphere);
 
-	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures.getTexture("fur"));
-	bunny.translate(glm::vec3(-20.0f, 0.0f, 20.0f));
-	scene->addObject(bunny);
-
 	Engine::Model grass = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("grass"));
 	grass.scale(glm::vec3(10.0f, 10.0f, 1.0f));
-	grass.rotateZ(-90.0f);
 	grass.translate(glm::vec3(0.0f, 10.0f, 10.0f));
+	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
 
+	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures.getTexture("fur"));
+	bunny.translate(glm::vec3(5.0f, 5.0f, 20.0f));
+	scene->addObject(bunny);
+
 	Engine::Model windowModel = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("window"));
-	windowModel.scale(glm::vec3(10.0f, 10.0f, 1.0f));
-	windowModel.rotateZ(-90.0f);
-	windowModel.translate(glm::vec3(0.0f, 10.0f, 20.0f));
+	windowModel.scale(glm::vec3(10.0f, 10.0f, 10.0f));
+	windowModel.translate(glm::vec3(0.0f, 0.0f, 25.0f));
 	scene->addObject(windowModel);
+
+	Engine::Model windowModel2 = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("window"));
+	windowModel2.scale(glm::vec3(10.0f, 10.0f, 10.0f));
+	windowModel2.translate(glm::vec3(0.0f, 0.0f, 15.0f));
+	scene->addObject(windowModel2);
 
 	std::vector<std::string> boxesTypes{"box", "diamond_ore", "fur", "steel","box", "diamond_ore", "fur", "steel" ,"box", "diamond_ore", "fur", "steel" };
 	float x = 0.0f;

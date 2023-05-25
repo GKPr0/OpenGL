@@ -175,12 +175,6 @@
     <None Include="resources\shaders\skyBox.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="resources\shaders\blend.frag">
-      <Filter>Resource Files\shaders</Filter>
-    </None>
-    <None Include="resources\shaders\blend.vert">
-      <Filter>Resource Files\shaders</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\box_rgb888.png">

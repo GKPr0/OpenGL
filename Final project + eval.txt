@@ -6,8 +6,8 @@ OK * 3D GL (glfw+glew), shaders, core profile
 OK * mouse (both axes), keyboard, fullscreen vs. windowed switching
 OK * multiple moving 3D models, at leats one loaded from file
 OK * at least 3 different textures
-* lighting model, at least 3 lights (1x ambient + Nx something else)
-* correct transparency
+OK * lighting model, at least 3 lights (1x ambient + Nx something else)
+OK * correct transparency
 * collisions
 
 EXTRAS:
