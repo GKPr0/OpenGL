@@ -31,6 +31,8 @@ namespace Engine {
 
 		Mesh mesh = Mesh(vertices, indices, texture);
 		meshes.push_back(mesh);
+
+		this->texture = texture;
 	}
 
 	void Model::render(Program& program)

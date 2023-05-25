@@ -31,14 +31,18 @@ namespace Engine
 
 		// Assigns the image to the OpenGL Texture object
 		int channels = image.channels();
+		GLenum format;
 		if (channels == 3)
 		{
+			format = GL_RGB;
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.cols, image.rows, 0, GL_BGR, GL_UNSIGNED_BYTE, image.data);
-
+			this->isTransparent = false;
 		}
 		else if (channels == 4)
 		{
+			format = GL_RGBA;
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.cols, image.rows, 0, GL_BGRA, GL_UNSIGNED_BYTE, image.data);
+			this->isTransparent = true;
 		}
 		else
 		{
@@ -51,10 +55,19 @@ namespace Engine
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // trilinear minifying
 		glGenerateMipmap(GL_TEXTURE_2D);  //Generate mipmaps now.
 
-		 // Configures the way the texture repeats
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
+		if (channels == 3)
+		{
+			// Configures the way the texture repeats
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		}
+		else if (channels == 4)
+		{
+			// Removes semi transparent line on the edges of the texture
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		}
+		
 		// Unbinds the OpenGL Texture object so that it can't accidentally be modified
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}

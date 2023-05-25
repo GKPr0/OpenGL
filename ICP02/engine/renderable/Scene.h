@@ -35,6 +35,7 @@ namespace Engine
 		
 		void renderSkyBox(Program& program);
 		void renderObjects(Program& program);
+		void renderTransparentObjects(Program& program);
 		void renderLights(Program& program);
 	};
 }

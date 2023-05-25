@@ -11,9 +11,11 @@ namespace Engine
 		~Texture() { glDeleteTextures(1, &id); }
 
 		GLuint getId() const { return id; }
-		
+		bool IsTransparent() const { return isTransparent; }
+
 	private:
 		GLuint id;
+		bool isTransparent;
 
 		void load(const std::string& file);
 	};

@@ -17,7 +17,7 @@
 Engine::Window* window;
 Engine::Scene* scene;
 Engine::Camera* camera;
-Engine::SpotLight* flashLight;
+std::vector<Engine::SpotLight*> flashLights;
 
 Engine::PointLight* sunLight;
 Engine::Model* sun;
@@ -31,6 +31,7 @@ void mouseMoveCallback(GLFWwindow* glfWindow, double xpos, double ypos);
 void resizeCallback(GLFWwindow* glfWindow, int width, int height);
 void inputCallback(GLFWwindow* glfWindow);
 
+void moveFlashLights();
 void sunOrbitMotion();
 void oscilateBoxes();
 
@@ -57,10 +58,11 @@ int main()
 	textures.addTexture("fur", "resources/textures/fur.jpg");
 	textures.addTexture("steel", "resources/textures/steel.jpg");
 	textures.addTexture("diamond_ore", "resources/textures/mc_diamond_ore.png");
+	textures.addTexture("grass", "resources/textures/grass.png");
+	textures.addTexture("window", "resources/textures/window.png");
 	
 	scene = new Engine::Scene(*window, *camera, programs);
 
-	
 	Engine::SkyBox skyBox = Engine::SkyBox(std::vector<std::string>
 	{
 		"resources/skybox/right.jpg",
@@ -76,13 +78,21 @@ int main()
 	sunLight = new Engine::PointLight();
 	scene->addLight(*sunLight);
 
-	flashLight = new Engine::SpotLight();
-	flashLight->setDiffuseColor(glm::vec3(0.1f, 0.5f, 0.5f));
-	flashLight->setSpecularColor(glm::vec3(0.4f, 0.8f, 0.8f));
-	flashLight->setLinearAttenuation(0.001f);
-	flashLight->setQuadraticAttenuation(0.0005f);
-	scene->addLight(*flashLight);
+	Engine::SpotLight* flashLight1 = new Engine::SpotLight();
+	flashLight1->setDiffuseColor(glm::vec3(0.1f, 0.5f, 0.5f));
+	flashLight1->setSpecularColor(glm::vec3(0.4f, 0.8f, 0.8f));
+	flashLight1->setLinearAttenuation(0.001f);
+	flashLight1->setQuadraticAttenuation(0.0005f);
+	scene->addLight(*flashLight1);
+	flashLights.push_back(flashLight1);
 
+	Engine::SpotLight* flashLight2 = new Engine::SpotLight();
+	flashLight2->setDiffuseColor(glm::vec3(0.5f, 0.5f, 0.1f));
+	flashLight2->setSpecularColor(glm::vec3(0.8f, 0.8f, 0.4f));
+	flashLight2->setLinearAttenuation(0.001f);
+	flashLight2->setQuadraticAttenuation(0.0005f);
+	scene->addLight(*flashLight2);
+	flashLights.push_back(flashLight2);
 
 	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures.getTexture("fur"));
 	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
@@ -99,6 +109,18 @@ int main()
 	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures.getTexture("fur"));
 	bunny.translate(glm::vec3(-20.0f, 0.0f, 20.0f));
 	scene->addObject(bunny);
+
+	Engine::Model grass = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("grass"));
+	grass.scale(glm::vec3(10.0f, 10.0f, 1.0f));
+	grass.rotateZ(-90.0f);
+	grass.translate(glm::vec3(0.0f, 10.0f, 10.0f));
+	scene->addObject(grass);
+
+	Engine::Model windowModel = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures.getTexture("window"));
+	windowModel.scale(glm::vec3(10.0f, 10.0f, 1.0f));
+	windowModel.rotateZ(-90.0f);
+	windowModel.translate(glm::vec3(0.0f, 10.0f, 20.0f));
+	scene->addObject(windowModel);
 
 	std::vector<std::string> boxesTypes{"box", "diamond_ore", "fur", "steel","box", "diamond_ore", "fur", "steel" ,"box", "diamond_ore", "fur", "steel" };
 	float x = 0.0f;
@@ -117,9 +139,7 @@ int main()
 
 void loop() 
 {
-	flashLight->setPosition(camera->getPosition());
-	flashLight->setDirection(camera->getDirection());
-
+	moveFlashLights();
 	sunOrbitMotion();
 	oscilateBoxes();
 
@@ -154,7 +174,8 @@ void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int m
 		window->toggleFullScreen();
 
 	if (key == GLFW_KEY_R && action == GLFW_PRESS)
-		flashLight->toggle();
+		for(auto flashLight : flashLights)
+			flashLight->toggle();
 }
 
 void resizeCallback(GLFWwindow* glfWindow, int width, int height)
@@ -186,11 +207,27 @@ void inputCallback(GLFWwindow* glfWindow)
 	}
 }
 
+void moveFlashLights()
+{
+	float xStep = 20.0f;
+	float xOffset = - xStep * (flashLights.size() / 2) + xStep/2;
+	for (auto flashLight : flashLights)
+	{
+		flashLight->setDirection(camera->getDirection());
+
+		auto position = camera->getPosition();
+		position.x += xOffset;
+		flashLight->setPosition(position);
+
+		xOffset += xStep;
+	}
+}
+
 void sunOrbitMotion()
 {
 	static float angle;
 
-	angle += 0.5f;
+	angle += 0.1f;
 	if (angle > 360)
 		angle = 0;
 	auto radius = 1000;

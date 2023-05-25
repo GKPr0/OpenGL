@@ -10,12 +10,14 @@ namespace Engine {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0, 0, 0, 1);
 		
+		Program* skyBoxProgram = programs.getProgram("skybox");
+		renderSkyBox(*skyBoxProgram);
+
 		Program* objectProgram = programs.getProgram("object");
 		renderLights(*objectProgram);
 		renderObjects(*objectProgram);
+		renderTransparentObjects(*objectProgram);
 
-		Program* skyBoxProgram = programs.getProgram("skybox");
-		renderSkyBox(*skyBoxProgram);
 	}
 	
 	void Scene::renderObjects(Program& program)
@@ -28,7 +30,37 @@ namespace Engine {
 		program.setMat4("uV_m", camera.getViewMatrix());
 
 		for (Model* model : objects)
-			model->render(program);
+			if(!model->getTexture()->IsTransparent())
+				model->render(program);
+	}
+
+	void Scene::renderTransparentObjects(Program& program)
+	{
+		if (program.getId() == 0)
+			return;
+
+		program.use();
+		program.setMat4("uProj_m", camera.getProjectionMatrix());
+		program.setMat4("uV_m", camera.getViewMatrix());
+
+		glEnable(GL_BLEND); // enable blending
+		glDisable(GL_CULL_FACE); // no polygon removal
+
+		std::map<float, Model*> sortedModels;
+		for (Model* model : objects)
+		{
+			if (!model->getTexture()->IsTransparent())
+				continue;
+
+			float distance = glm::length(camera.getPosition() - model->getPosition());
+			sortedModels[distance] = model;
+		}
+
+		for (std::map<float, Model*>::reverse_iterator it = sortedModels.rbegin(); it != sortedModels.rend(); ++it)
+			it->second->render(program);
+
+		glDisable(GL_BLEND);
+		glEnable(GL_CULL_FACE);
 	}
 
 	void Scene::renderLights(Program& program)

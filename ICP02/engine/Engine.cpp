@@ -69,7 +69,11 @@ namespace Engine {
         glEnable(GL_DEPTH_TEST);
 
         // ALL objects are non-transparent, cull back face of polygons 
-        glEnable(GL_CULL_FACE);
+        glEnable(GL_CULL_FACE);   
+
+        // enable alpha blending and set alpha blending function
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         if (glfwExtensionSupported("GL_ARB_debug_output"))
         {

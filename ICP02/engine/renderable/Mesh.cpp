@@ -40,6 +40,7 @@ namespace Engine
 
     void Mesh::render(Program& program)
     {
+        //Set texture unit
         glActiveTexture(GL_TEXTURE0);
         program.setInt("tex0", 0);
 
@@ -47,6 +48,7 @@ namespace Engine
         glBindTexture(GL_TEXTURE_2D, texture->getId());
         glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 }

@@ -179,6 +179,8 @@
     <ClInclude Include="engine\support\OBJloader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\shaders\blend.frag" />
+    <None Include="resources\shaders\blend.vert" />
     <None Include="resources\shaders\object.frag" />
     <None Include="resources\shaders\object.vert" />
     <None Include="resources\shaders\skyBox.frag" />
@@ -193,8 +195,10 @@
     <Image Include="resources\skybox\top.jpg" />
     <Image Include="resources\textures\box_rgb888.png" />
     <Image Include="resources\textures\fur.jpg" />
+    <Image Include="resources\textures\grass.png" />
     <Image Include="resources\textures\mc_diamond_ore.png" />
     <Image Include="resources\textures\steel.jpg" />
+    <Image Include="resources\textures\window.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

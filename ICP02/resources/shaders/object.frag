@@ -40,7 +40,7 @@ uniform vec3 cameraPos;
 
 // Lights
 uniform PointLight pointLights[1];
-uniform SpotLight spotLights[1];
+uniform SpotLight spotLights[2];
 
 // Textures
 uniform sampler2D tex0; 
@@ -56,16 +56,19 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main()
 {
-
     vec3 norm = normalize(Normal);
     vec3 cameraDir = normalize(cameraPos - FragPos);
 
-    vec3 light = CalcSpotLight(spotLights[0], norm, FragPos , cameraDir);
-    light += CalcPointLight(pointLights[0], norm, FragPos , cameraDir);
+    vec3 light = vec3(0.0f);
+    for(int i = 0; i < pointLights.length(); i++)
+        light += CalcPointLight(pointLights[i], norm, FragPos , cameraDir);
+
+    for(int i = 0; i < spotLights.length(); i++)
+		light += CalcSpotLight(spotLights[i], norm, FragPos , cameraDir);
 
     vec4 tex = texture(tex0, TexCoords);
 
-    FragColor = tex + vec4(light,1.0f);
+    FragColor = tex + vec4(light, 0.0f);
 }
 
 
