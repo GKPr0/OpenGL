@@ -6,11 +6,6 @@
 #include <glm/ext.hpp>
 #include <cmath>
 
-//Audio
-#include <Mmsystem.h>
-#include <mciapi.h>
-#pragma comment(lib, "Winmm.lib")
-
 //Engine
 #include "engine/base/Window.h"
 #include "engine/base/Camera.h"
@@ -35,6 +30,7 @@ Engine::PointLight* sunLight;
 Engine::Model* sun;
 
 std::vector<Engine::Model*> boxes;
+std::vector<Engine::ParticleGenerator*> partGens;
 
 void loop();
 void scrollCallback(GLFWwindow* glfWindow, double xoffset, double yoffset);
@@ -65,6 +61,7 @@ int main()
 	programs = new Engine::ProgramsManager();
 	programs->addProgram("object", "resources/shaders/object.vert", "resources/shaders/object.frag");
 	programs->addProgram("skybox", "resources/shaders/skyBox.vert", "resources/shaders/skyBox.frag");
+	programs->addProgram("particle", "resources/shaders/particle.vert", "resources/shaders/particle.frag");
 
 	textures = new Engine::TexturesManager();
 	textures->addTexture("box", "resources/textures/box_rgb888.png");
@@ -115,8 +112,8 @@ int main()
 	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(*sun);
 
-	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
-	scene->addObject(teapot);
+	/*Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
+	scene->addObject(teapot);*/
 
 	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("box"));
 	sphere.translate(glm::vec3(20.0f, 0.0f, 20.0f));
@@ -152,9 +149,15 @@ int main()
 		box->scale(glm::vec3(15.0f, 15.0f, 15.0f));
 		scene->addObject(*box);
 		boxes.push_back(box);
+
+		Engine::ParticleGenerator* partGen = new Engine::ParticleGenerator(textures->getTexture(boxesTypes[i]), 50);
+		partGen->translate(glm::vec3(x, 0.0f, 100.0f));
+		scene->addParticleGenerator(*partGen);
+		partGens.push_back(partGen);
+
 		x += 30;
 	}
-	
+
 	window->startRender();
 }
 
@@ -163,6 +166,10 @@ void loop()
 	moveFlashLights();
 	sunOrbitMotion();
 	oscilateBoxes();
+
+	for (auto particleGen : scene->getParticleGenerators())
+		particleGen->update(Engine::deltaTime, 2);
+	
 
 	scene->render();
 }
@@ -190,7 +197,7 @@ void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int m
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
-		audios->getAudio("oof")->playBlocking();
+		//audios->getAudio("oof")->playBlocking();
 		window->exit();
 	}
 

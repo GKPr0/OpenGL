@@ -67,6 +67,12 @@
     <Filter Include="Resource Files\sounds">
       <UniqueIdentifier>{46c948b1-6c0d-4991-ad4f-874132af20ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Renderable\Particles">
+      <UniqueIdentifier>{982ec4c8-1599-4713-bd97-fac4bebcb82f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Renderable\Particles">
+      <UniqueIdentifier>{c064d6f8-6ffa-4922-ae3a-3566bc526f65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="engine\base\Window.cpp">
@@ -116,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="engine\audio\Audio.cpp">
       <Filter>Source Files\Engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderable\ParticleGenerator.cpp">
+      <Filter>Source Files\Engine\Renderable\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +188,9 @@
     <ClInclude Include="engine\audio\AudioManager.h">
       <Filter>Header Files\Engine\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="engine\renderable\ParticleGenerator.h">
+      <Filter>Header Files\Engine\Renderable\Particles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\object.frag">
@@ -191,6 +203,12 @@
       <Filter>Resource Files\shaders</Filter>
     </None>
     <None Include="resources\shaders\skyBox.vert">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\particle.frag">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\particle.vert">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

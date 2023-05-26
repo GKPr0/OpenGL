@@ -16,7 +16,13 @@ namespace Engine {
 		Program* objectProgram = programs.getProgram("object");
 		renderLights(*objectProgram);
 		renderObjects(*objectProgram);
+
+		Program* particleProgram = programs.getProgram("particle");
+		renderParticles(*particleProgram);
+
 		renderTransparentObjects(*objectProgram);
+
+	
 
 	}
 	
@@ -86,5 +92,26 @@ namespace Engine {
 		program.setMat4("uV_m", glm::mat4(glm::mat3(camera.getViewMatrix())));
 
 		skyBox->render(program);
+	}
+
+	void Scene::renderParticles(Program& program)
+	{
+		if (program.getId() == 0)
+			return;
+
+		program.use();
+		program.setMat4("uProj_m", camera.getProjectionMatrix());
+		program.setMat4("uV_m", camera.getViewMatrix());
+
+		glEnable(GL_BLEND);
+		glDisable(GL_CULL_FACE);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE); 	// use additive blending to give it a 'glow' effect
+
+		for (ParticleGenerator* particleGenerator : particleGenerators)
+			particleGenerator->render(program);
+
+		glDisable(GL_BLEND);
+		glEnable(GL_CULL_FACE);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 	// reset to default blending mode
 	}
 }

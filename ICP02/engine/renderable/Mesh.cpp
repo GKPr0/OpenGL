@@ -21,7 +21,6 @@ namespace Engine
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->indices.size() * sizeof(GLuint), this->indices.data(), GL_STATIC_DRAW);
 
-        //TODO Udìlat shader co pùjde napojit
         // Set Vertex Attribute to explain OpenGL how to interpret the VBO
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MeshVertex), (void*)(offsetof(MeshVertex, position)));
         glEnableVertexAttribArray(0);

@@ -151,6 +151,7 @@
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="engine\renderable\Mesh.cpp" />
     <ClCompile Include="engine\renderable\Model.cpp" />
+    <ClCompile Include="engine\renderable\ParticleGenerator.cpp" />
     <ClCompile Include="engine\renderable\PointLight.cpp" />
     <ClCompile Include="engine\renderable\Renderable.cpp" />
     <ClCompile Include="engine\renderable\Scene.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="engine\renderable\Light.h" />
     <ClInclude Include="engine\renderable\Mesh.h" />
     <ClInclude Include="engine\renderable\Model.h" />
+    <ClInclude Include="engine\renderable\ParticleGenerator.h" />
     <ClInclude Include="engine\renderable\PointLight.h" />
     <ClInclude Include="engine\renderable\Renderable.h" />
     <ClInclude Include="engine\renderable\Scene.h" />
@@ -184,6 +186,8 @@
   <ItemGroup>
     <None Include="resources\shaders\object.frag" />
     <None Include="resources\shaders\object.vert" />
+    <None Include="resources\shaders\particle.frag" />
+    <None Include="resources\shaders\particle.vert" />
     <None Include="resources\shaders\skyBox.frag" />
     <None Include="resources\shaders\skyBox.vert" />
   </ItemGroup>
