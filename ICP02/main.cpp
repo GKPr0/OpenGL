@@ -42,12 +42,14 @@ void inputCallback(GLFWwindow* glfWindow);
 void moveFlashLights();
 void sunOrbitMotion();
 void oscilateBoxes();
+void updateParticles();
+
 bool checkCollisison();
 
 int main()
 {
 	window = new Engine::Window(800, 800);
-	window->setTitle("My awsome teapot");
+	window->setTitle("Engine example app");
 	window->setRenderMethod(loop);
 	window->setInputCallback(inputCallback);
 	window->setResizeCallback(resizeCallback);
@@ -89,9 +91,7 @@ int main()
 	skyBox.scale(glm::vec3(500.0f));
 	scene->setSkyBox(skyBox);
 
-	sunLight = new Engine::PointLight();
-	scene->addLight(*sunLight);
-
+	// ----------- Flaslights -----------
 	Engine::SpotLight* flashLight1 = new Engine::SpotLight();
 	flashLight1->setDiffuseColor(glm::vec3(0.1f, 0.5f, 0.5f));
 	flashLight1->setSpecularColor(glm::vec3(0.4f, 0.8f, 0.8f));
@@ -108,12 +108,17 @@ int main()
 	scene->addLight(*flashLight2);
 	flashLights.push_back(flashLight2);
 
+	// ----------- SUN -----------
+	sunLight = new Engine::PointLight();
+	scene->addLight(*sunLight);
+
 	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("fur"));
 	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(*sun);
 
-	/*Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
-	scene->addObject(teapot);*/
+	// ----------- Static Models -----------
+	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
+	scene->addObject(teapot);
 
 	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("box"));
 	sphere.translate(glm::vec3(20.0f, 0.0f, 20.0f));
@@ -126,6 +131,7 @@ int main()
 	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
 
+	// ----------- Bunny between windows-----------
 	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures->getTexture("fur"));
 	bunny.translate(glm::vec3(5.0f, 5.0f, 20.0f));
 	scene->addObject(bunny);
@@ -140,6 +146,7 @@ int main()
 	windowModel2.translate(glm::vec3(0.0f, 0.0f, 15.0f));
 	scene->addObject(windowModel2);
 
+	// ----------- SinBoxes with particles-----------
 	std::vector<std::string> boxesTypes{"box", "diamond_ore", "fur", "steel","box", "diamond_ore", "fur", "steel" ,"box", "diamond_ore", "fur", "steel" };
 	float x = 0.0f;
 	for (int i = 0; i < boxesTypes.size(); i++)
@@ -166,11 +173,8 @@ void loop()
 	moveFlashLights();
 	sunOrbitMotion();
 	oscilateBoxes();
-
-	for (auto particleGen : scene->getParticleGenerators())
-		particleGen->update(Engine::deltaTime, 2);
+	updateParticles();
 	
-
 	scene->render();
 }
 
@@ -297,6 +301,17 @@ void oscilateBoxes()
 
 		box->setPosition(positon);
 		phase += phase_step;
+	}
+}
+
+void updateParticles()
+{
+	for (auto particleGen : scene->getParticleGenerators())
+	{
+		particleGen->update(Engine::deltaTime, 2);
+		particleGen->rotateX(((rand() % 360) / 100.0f));
+		particleGen->rotateY(((rand() % 360) / 100.0f));
+		particleGen->rotateZ(((rand() % 360) / 100.0f));
 	}
 }
 

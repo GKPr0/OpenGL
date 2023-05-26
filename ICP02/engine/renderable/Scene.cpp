@@ -21,9 +21,6 @@ namespace Engine {
 		renderParticles(*particleProgram);
 
 		renderTransparentObjects(*objectProgram);
-
-	
-
 	}
 	
 	void Scene::renderObjects(Program& program)
