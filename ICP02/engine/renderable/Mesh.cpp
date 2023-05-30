@@ -1,4 +1,5 @@
 #include "Mesh.h"
+#include "../support/OBJloader.h"
 
 namespace Engine 
 {
@@ -49,6 +50,31 @@ namespace Engine
         glBindVertexArray(0);
 
         glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
+    Mesh Mesh::load(const std::string& path, Texture* texture)
+    {
+        std::vector<glm::vec3> positions;
+        std::vector<glm::vec2> texPositions;
+        std::vector<glm::vec3> normals;
+
+        std::vector<GLuint> indices;
+
+        bool status = loadOBJ(path.c_str(), positions, texPositions, normals);
+        if (!status)
+        {
+            std::cerr << "Failed to load obj from: " << path << std::endl;
+            exit(EXIT_FAILURE);
+        }
+
+        std::vector<MeshVertex> vertices;
+        for (unsigned i = 0; i < positions.size(); i++) {
+            MeshVertex vertex = MeshVertex{ positions[i], texPositions[i], normals[i] };
+            vertices.push_back(vertex);
+            indices.push_back(i);
+        }
+
+        return Mesh(vertices, indices, texture);
     }
 }
 

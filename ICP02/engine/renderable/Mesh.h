@@ -14,12 +14,21 @@ namespace Engine
 
 	class Mesh : public Renderable {
 	public:
+		Mesh() = default;
 		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, Texture* texture);
 
 		virtual void render(Program& program) override;
 
+		void setTexture(Texture* texture) { this->texture = texture; }
+		Texture* getTexture() const { return texture; }
+
+		void setIndices(const std::vector<GLuint>& indices) { this->indices = indices; }
+		std::vector<GLuint> getIndices() const { return indices; }
+
+		void setVertices(const std::vector<MeshVertex>& vertices) { this->vertices = vertices; }
 		std::vector<MeshVertex> getVertices() const { return vertices; }
 
+		static Mesh load(const std::string& path, Texture* texture);
 	private:
 		std::vector<MeshVertex> vertices;
 		std::vector<GLuint> indices;	

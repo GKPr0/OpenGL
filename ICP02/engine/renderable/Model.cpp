@@ -3,34 +3,14 @@
 #include <map>
 
 namespace Engine {
-	Model::Model(const std::string& path, Texture* texture)
+	Model::Model(const std::string& path, Texture* texture, const bool isCollisionChecked) : isCollisionChecked(isCollisionChecked)
 	{
 		load(path, texture);
 	}
 
 	void Model::load(const std::string& path, Texture* texture)
 	{
-		std::vector<glm::vec3> positions;
-		std::vector<glm::vec2> texPositions;
-		std::vector<glm::vec3> normals;
-
-		std::vector<GLuint> indices;
-
-		bool status = loadOBJ(path.c_str(), positions, texPositions, normals);
-		if (!status)
-		{
-			std::cerr << "Failed to load obj from: " << path << std::endl;
-			exit(EXIT_FAILURE);
-		}
-
-		std::vector<MeshVertex> vertices;
-		for (unsigned i = 0; i < positions.size(); i++) {
-			MeshVertex vertex = MeshVertex{ positions[i], texPositions[i], normals[i] };
-			vertices.push_back(vertex);
-			indices.push_back(i);
-		}
-
-		Mesh mesh = Mesh(vertices, indices, texture);
+		Mesh mesh = Mesh::load(path, texture);
 		meshes.push_back(mesh);
 
 		this->texture = texture;
@@ -59,23 +39,44 @@ namespace Engine {
 	{
 		glm::mat4x4 modelMatrix = getModelMatrix();
 
-		aabbMin = aabbMax = modelMatrix * glm::vec4(meshes[0].getVertices()[0].position, 1.0);
+		bbMin = bbMax = modelMatrix * glm::vec4(meshes[0].getVertices()[0].position, 1.0);
 		for (auto mesh : meshes)
 		{
 			for (const auto& vertex : mesh.getVertices())
 			{
 				glm::vec3 transformedPosition = modelMatrix * glm::vec4(vertex.position, 1.0);
-				aabbMin = glm::min(aabbMin, transformedPosition);
-				aabbMax = glm::max(aabbMax, transformedPosition);
+				bbMin = glm::min(bbMin, transformedPosition);
+				bbMax = glm::max(bbMax, transformedPosition);
 			}
+		}
+
+		// Add some bading in case the model is a plane
+		float padding = 0.5f;
+		if (bbMin.x == bbMax.x)
+		{
+			bbMin.x -= padding;
+			bbMax.x += padding;
+		}
+		else if (bbMin.y == bbMax.y)
+		{
+			bbMin.y -= padding;
+			bbMax.y += padding;
+		}
+		else if (bbMin.z == bbMax.z)
+		{
+			bbMin.z -= padding;
+			bbMax.z += padding;
 		}
 	}
 
 	bool Model::checkCollision(const glm::vec3& position) const
 	{
-		bool xCollision = (position.x >= aabbMin.x && position.x <= aabbMax.x);
-		bool yCollision = (position.y >= aabbMin.y && position.y <= aabbMax.y);
-		bool zCollision = (position.z >= aabbMin.z && position.z <= aabbMax.z);
+		if(!isCollisionChecked)
+			return false;
+
+		bool xCollision = (position.x >= bbMin.x && position.x <= bbMax.x);
+		bool yCollision = (position.y >= bbMin.y && position.y <= bbMax.y);
+		bool zCollision = (position.z >= bbMin.z && position.z <= bbMax.z);
 
 		return xCollision && yCollision && zCollision;
 	}

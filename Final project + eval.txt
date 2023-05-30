@@ -12,7 +12,7 @@ OK * correct transparency
 
 EXTRAS:
 * height map textured by height, proper player height coords
-* particles
+OK * particles
 * scripting (useful)
 OK * audio
 
@@ -32,5 +32,3 @@ F = "4"     0   50
 
 
 Send full installation procedures and full project in archive, github, gitlab, ...
-
-Nainstalovat SFML

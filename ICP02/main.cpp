@@ -58,7 +58,7 @@ int main()
 	window->setMouseMoveCallback(mouseMoveCallback);
 	window->setInputMode(GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-	camera = new Engine::Camera(*window,glm::vec3(0.0f,0.0f,0.0f));
+	camera = new Engine::Camera(*window,glm::vec3(10.0f,10.0f,15.0f));
 
 	programs = new Engine::ProgramsManager();
 	programs->addProgram("object", "resources/shaders/object.vert", "resources/shaders/object.frag");
@@ -126,24 +126,25 @@ int main()
 	scene->addObject(sphere);
 
 	Engine::Model grass = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("grass"));
+	grass.setIsCollisionChecked(false);
 	grass.scale(glm::vec3(10.0f, 10.0f, 1.0f));
-	grass.translate(glm::vec3(0.0f, 10.0f, 10.0f));
+	grass.translate(glm::vec3(0.0f, 10.0f, -10.0f));
 	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
 
-	// ----------- Bunny between windows-----------
+	 //----------- Bunny between windows-----------
 	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures->getTexture("fur"));
 	bunny.translate(glm::vec3(5.0f, 5.0f, 20.0f));
 	scene->addObject(bunny);
 
 	Engine::Model windowModel = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("window"));
 	windowModel.scale(glm::vec3(10.0f, 10.0f, 10.0f));
-	windowModel.translate(glm::vec3(0.0f, 0.0f, 25.0f));
+	windowModel.translate(glm::vec3(0.0f, 0.0f, 30.0f));
 	scene->addObject(windowModel);
 
 	Engine::Model windowModel2 = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("window"));
 	windowModel2.scale(glm::vec3(10.0f, 10.0f, 10.0f));
-	windowModel2.translate(glm::vec3(0.0f, 0.0f, 15.0f));
+	windowModel2.translate(glm::vec3(0.0f, 0.0f, 10.0f));
 	scene->addObject(windowModel2);
 
 	// ----------- SinBoxes with particles-----------
@@ -318,7 +319,7 @@ void updateParticles()
 bool checkCollisison()
 {
 	auto cameraPosition = camera->getPosition();
-	for (auto box : boxes)
+	for (auto box : scene->getObjects())
 		if (box->checkCollision(cameraPosition))
 			return true;
 		
