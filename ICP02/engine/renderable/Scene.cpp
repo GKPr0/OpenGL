@@ -49,6 +49,7 @@ namespace Engine {
 
 		glEnable(GL_BLEND); // enable blending
 		glDisable(GL_CULL_FACE); // no polygon removal
+		glDepthMask(GL_FALSE); // set Z to read-only
 
 		// Sort model by distance from camera
 		std::vector<std::pair<float, Model*>> modelsWithDistance;
@@ -61,15 +62,19 @@ namespace Engine {
 			modelsWithDistance.push_back(std::make_pair(distance, model));
 		}
 
-		std::sort(modelsWithDistance.begin(), modelsWithDistance.end(), [](std::pair<float, Model*> a, std::pair<float, Model*> b) {
-			return a.first > b.first; // øazení sestupnì
+		// Further models are rendered first
+		std::sort(modelsWithDistance.begin(), modelsWithDistance.end(),
+			[](std::pair<float, Model*> a, std::pair<float, Model*> b) 
+			{
+				return a.first > b.first;
 			});
 
 		for (auto it = modelsWithDistance.begin(); it != modelsWithDistance.end(); ++it)
-			it->second->render(program);
+			it->second->camRelatedRender(program, camera.getPosition(), camera.getDirection());
 
 		glDisable(GL_BLEND);
 		glEnable(GL_CULL_FACE);
+		glDepthMask(GL_TRUE);
 	}
 
 	void Scene::renderLights(Program& program)

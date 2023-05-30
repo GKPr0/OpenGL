@@ -1,5 +1,6 @@
 #include "Mesh.h"
 #include "../support/OBJloader.h"
+#include <algorithm>
 
 namespace Engine 
 {
@@ -47,8 +48,52 @@ namespace Engine
         glBindVertexArray(vao);
         glBindTexture(GL_TEXTURE_2D, texture->getId());
         glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+      
         glBindVertexArray(0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 
+    void Mesh::camRelatedRender(Program& program, glm::vec3 cameraPos, glm::vec3 cameraDir)
+    {
+        // Calculate the center point and length to the camera
+        std::vector<std::pair<float, GLuint>> triangleData;
+        for (int i = 0; i < indices.size(); i += 3)
+        {
+            glm::vec3 p1 = vertices[indices[i]].position;
+            glm::vec3 p2 = vertices[indices[i + 1]].position;
+            glm::vec3 p3 = vertices[indices[i + 2]].position;
+
+            // Compute the center of the triangle
+            glm::vec3 center = (p1 + p2 + p3) / 3.0f;
+
+            // Compute the distance from the camera
+            float length = glm::length(center - cameraPos);
+
+            // Store the center point and the index of the first vertex of the triangle
+            triangleData.push_back({ length, i });
+        }
+
+        // Sort the triangles by distance from the camera
+        std::sort(triangleData.begin(), triangleData.end(),
+            [](const std::pair<float, GLuint>& a, const std::pair<float, GLuint>& b)
+            {
+                return a.first > b.first; // draw further triangles first
+            });
+
+        //Set texture unit
+        glActiveTexture(GL_TEXTURE0);
+        program.setInt("tex0", 0);
+
+        glBindVertexArray(vao);
+        glBindTexture(GL_TEXTURE_2D, texture->getId());
+
+        //Draw triangle separately in right order
+        for (const auto& data : triangleData)
+        {
+            glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)(data.second * sizeof(GLuint)));
+        }
+
+        glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 

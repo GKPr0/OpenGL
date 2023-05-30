@@ -87,4 +87,11 @@ namespace Engine {
 		for (Mesh& mesh : meshes)
 			mesh.render(program);
 	}
+
+	void Model::camRelatedRender(Program& program, glm::vec3 cameraPos, glm::vec3 cameraDir)
+	{
+		program.setMat4("uM_m", getModelMatrix());
+		for (Mesh& mesh : meshes)
+			mesh.camRelatedRender(program, cameraPos, cameraDir);
+	}
 }
