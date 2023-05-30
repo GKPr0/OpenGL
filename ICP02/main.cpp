@@ -132,6 +132,12 @@ int main()
 	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
 
+
+	Engine::Model windowbox = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures->getTexture("window"));
+	windowbox.scale(glm::vec3(10.0f, 10.0f, 10.0f));
+	windowbox.translate(glm::vec3(0.0f, 0.0f, -20.0f));
+	scene->addObject(windowbox);
+
 	 //----------- Bunny between windows-----------
 	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures->getTexture("fur"));
 	bunny.translate(glm::vec3(5.0f, 5.0f, 20.0f));

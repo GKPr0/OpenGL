@@ -50,7 +50,7 @@ namespace Engine {
 			}
 		}
 
-		// Add some bading in case the model is a plane
+		// Add some padding in case the model is a plane
 		float padding = 0.5f;
 		if (bbMin.x == bbMax.x)
 		{

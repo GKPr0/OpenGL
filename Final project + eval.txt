@@ -8,7 +8,7 @@ OK * multiple moving 3D models, at leats one loaded from file
 OK * at least 3 different textures
 OK * lighting model, at least 3 lights (1x ambient + Nx something else)
 OK * correct transparency
-* collisions
+OK * collisions
 
 EXTRAS:
 * height map textured by height, proper player height coords

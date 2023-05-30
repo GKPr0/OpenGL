@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include <algorithm>
 
 namespace Engine {
 
@@ -49,17 +50,22 @@ namespace Engine {
 		glEnable(GL_BLEND); // enable blending
 		glDisable(GL_CULL_FACE); // no polygon removal
 
-		std::map<float, Model*> sortedModels;
+		// Sort model by distance from camera
+		std::vector<std::pair<float, Model*>> modelsWithDistance;
 		for (Model* model : objects)
 		{
 			if (!model->getTexture()->IsTransparent())
 				continue;
 
 			float distance = glm::length(camera.getPosition() - model->getPosition());
-			sortedModels[distance] = model;
+			modelsWithDistance.push_back(std::make_pair(distance, model));
 		}
 
-		for (std::map<float, Model*>::reverse_iterator it = sortedModels.rbegin(); it != sortedModels.rend(); ++it)
+		std::sort(modelsWithDistance.begin(), modelsWithDistance.end(), [](std::pair<float, Model*> a, std::pair<float, Model*> b) {
+			return a.first > b.first; // øazení sestupnì
+			});
+
+		for (auto it = modelsWithDistance.begin(); it != modelsWithDistance.end(); ++it)
 			it->second->render(program);
 
 		glDisable(GL_BLEND);
