@@ -89,9 +89,7 @@ namespace Engine
 
         //Draw triangle separately in right order
         for (const auto& data : triangleData)
-        {
             glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)(data.second * sizeof(GLuint)));
-        }
 
         glBindVertexArray(0);
         glBindTexture(GL_TEXTURE_2D, 0);

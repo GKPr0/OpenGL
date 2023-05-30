@@ -72,6 +72,7 @@ int main()
 	textures->addTexture("diamond_ore", "resources/textures/mc_diamond_ore.png");
 	textures->addTexture("grass", "resources/textures/grass.png");
 	textures->addTexture("window", "resources/textures/window.png");
+	textures->addTexture("green_glass", "resources/textures/transparent_green.png");
 
 	audios = new Engine::AudioManager();
 	audios->addAudio("oof", "resources/sounds/minecraft_oof.wav");
@@ -131,6 +132,11 @@ int main()
 	grass.translate(glm::vec3(0.0f, 10.0f, -10.0f));
 	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
+
+	Engine::Model transparentBunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("green_glass"));
+	transparentBunny.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+	transparentBunny.translate(glm::vec3(0.0f, 0.0f, -50.0f));
+	scene->addObject(transparentBunny);
 
 	//----------- Bunny between windows-----------
 	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures->getTexture("fur"));
