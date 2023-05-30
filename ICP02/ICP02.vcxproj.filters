@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{036e3b10-e57b-44a8-88f4-bd6cfd23f5cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Objects">
-      <UniqueIdentifier>{e80e0b28-e547-4161-a599-2ca3377de2e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{3bc59498-dda2-4026-aa21-2f85acf5bc87}</UniqueIdentifier>
     </Filter>

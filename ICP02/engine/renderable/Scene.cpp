@@ -34,7 +34,7 @@ namespace Engine {
 		program.setMat4("uV_m", camera.getViewMatrix());
 
 		for (Model* model : objects)
-			if(!model->getTexture()->IsTransparent())
+			if(!model->isTransparent())
 				model->render(program);
 	}
 
@@ -51,18 +51,18 @@ namespace Engine {
 		glDisable(GL_CULL_FACE); // no polygon removal
 		glDepthMask(GL_FALSE); // set Z to read-only
 
-		// Sort model by distance from camera
+		// Assign Distance from camrea to each transparent model
 		std::vector<std::pair<float, Model*>> modelsWithDistance;
 		for (Model* model : objects)
 		{
-			if (!model->getTexture()->IsTransparent())
+			if (!model->isTransparent())
 				continue;
 
 			float distance = glm::length(camera.getPosition() - model->getPosition());
 			modelsWithDistance.push_back(std::make_pair(distance, model));
 		}
 
-		// Further models are rendered first
+		// Sort model by distance from camera. Further models are rendered first
 		std::sort(modelsWithDistance.begin(), modelsWithDistance.end(),
 			[](std::pair<float, Model*> a, std::pair<float, Model*> b) 
 			{

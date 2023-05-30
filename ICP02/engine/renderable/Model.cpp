@@ -13,7 +13,6 @@ namespace Engine {
 		Mesh mesh = Mesh::load(path, texture);
 		meshes.push_back(mesh);
 
-		this->texture = texture;
 		calculateBoundingBox();
 	}
 
@@ -93,5 +92,14 @@ namespace Engine {
 		program.setMat4("uM_m", getModelMatrix());
 		for (Mesh& mesh : meshes)
 			mesh.camRelatedRender(program, cameraPos, cameraDir);
+	}
+
+	bool Model::isTransparent() const
+	{
+		for(auto mesh : meshes)
+			if (mesh.getTexture()->isTransparent())
+				return true;
+
+		return false;
 	}
 }

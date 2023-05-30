@@ -36,13 +36,13 @@ namespace Engine
 		{
 			format = GL_RGB;
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.cols, image.rows, 0, GL_BGR, GL_UNSIGNED_BYTE, image.data);
-			this->isTransparent = false;
+			this->mIsTransparent = false;
 		}
 		else if (channels == 4)
 		{
 			format = GL_RGBA;
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.cols, image.rows, 0, GL_BGRA, GL_UNSIGNED_BYTE, image.data);
-			this->isTransparent = true;
+			this->mIsTransparent = true;
 		}
 		else
 		{

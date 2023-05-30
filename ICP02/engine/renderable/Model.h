@@ -22,12 +22,12 @@ namespace Engine
 
 		void setIsCollisionChecked(const bool isCollisionChecked) { this->isCollisionChecked = isCollisionChecked; }
 
-		Texture* getTexture() const { return texture; }
+		bool isTransparent() const;
+
 	private:
 		void calculateBoundingBox();
 
 		std::vector<Mesh> meshes;
-		Texture* texture;
 		glm::vec3 bbMin;
 		glm::vec3 bbMax;
 		bool isCollisionChecked;
