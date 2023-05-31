@@ -165,7 +165,7 @@ int main()
 		boxes.push_back(box);
 
 		Engine::ParticleGenerator* partGen = new Engine::ParticleGenerator(textures->getTexture(boxesTypes[i]), 50);
-		partGen->translate(glm::vec3(x, 0.0f, 100.0f));
+		partGen->translate(glm::vec3(x, 0.0f, 90.0f));
 		scene->addParticleGenerator(*partGen);
 		partGens.push_back(partGen);
 
@@ -187,7 +187,6 @@ void loop()
 
 void scrollCallback(GLFWwindow* glfWindow, double xoffset, double yoffset)
 {
-	//std::cout << "Scrolled xoffset: " << xoffset << " yoffset: " << yoffset << std::endl;
 	camera->zoom(-1.0 * yoffset);
 }
 
@@ -208,7 +207,7 @@ void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int m
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
-		audios->getAudio("oof")->playBlocking();
+		//audios->getAudio("oof")->playBlocking();
 		window->exit();
 	}
 
@@ -304,10 +303,15 @@ void oscilateBoxes()
 		if (angle > 360)
 			angle = 0;
 	
-		auto positon = box->getPosition();
-		positon.y = amplitude * sin(3.14 * 2 * (angle + phase) / 360);
+		auto calcMove = amplitude * sin(3.14 * 2 * (angle + phase) / 360);
 
+		auto positon = box->getPosition();
+		positon.y = calcMove;
 		box->setPosition(positon);
+
+		auto yScale = glm::abs(5 * calcMove);
+		box->scale(glm::vec3(10.0, yScale, 10.0));
+
 		phase += phase_step;
 	}
 }
