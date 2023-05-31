@@ -113,42 +113,42 @@ int main()
 	sunLight = new Engine::PointLight();
 	scene->addLight(*sunLight);
 
-	sun = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("fur"));
+	sun = new Engine::Model("resources/objects/sphere_tri_vnt.obj", textures->getTexture("fur"));
 	sun->scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(*sun);
 
 	// ----------- Static Models -----------
-	Engine::Model teapot =  Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("steel"));
+	Engine::Model teapot =  Engine::Model("resources/objects/teapot_tri_vnt.obj", textures->getTexture("steel"));
 	scene->addObject(teapot);
 
-	Engine::Model sphere = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/sphere_tri_vnt.obj", textures->getTexture("box"));
+	Engine::Model sphere = Engine::Model("resources/objects/sphere_tri_vnt.obj", textures->getTexture("box"));
 	sphere.translate(glm::vec3(20.0f, 0.0f, 20.0f));
 	sphere.scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	scene->addObject(sphere);
 
-	Engine::Model grass = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("grass"));
+	Engine::Model grass = Engine::Model("resources/objects/plane_2d.obj", textures->getTexture("grass"));
 	grass.setIsCollisionChecked(false);
 	grass.scale(glm::vec3(10.0f, 10.0f, 1.0f));
 	grass.translate(glm::vec3(0.0f, 10.0f, -10.0f));
 	grass.rotateZ(-90.0f);
 	scene->addObject(grass);
 
-	Engine::Model transparentBunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/teapot_tri_vnt.obj", textures->getTexture("green_glass"));
+	Engine::Model transparentBunny = Engine::Model("resources/objects/teapot_tri_vnt.obj", textures->getTexture("green_glass"));
 	transparentBunny.scale(glm::vec3(5.0f, 5.0f, 5.0f));
 	transparentBunny.translate(glm::vec3(0.0f, 0.0f, -50.0f));
 	scene->addObject(transparentBunny);
 
 	//----------- Bunny between windows-----------
-	Engine::Model bunny = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/bunny_tri_vnt.obj", textures->getTexture("fur"));
+	Engine::Model bunny = Engine::Model("resources/objects/bunny_tri_vnt.obj", textures->getTexture("fur"));
 	bunny.translate(glm::vec3(5.0f, 5.0f, 20.0f));
 	scene->addObject(bunny);
 
-	Engine::Model windowModel = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("window"));
+	Engine::Model windowModel = Engine::Model("resources/objects/plane_2d.obj", textures->getTexture("window"));
 	windowModel.scale(glm::vec3(10.0f, 10.0f, 10.0f));
 	windowModel.translate(glm::vec3(0.0f, 0.0f, 30.0f));
 	scene->addObject(windowModel);
 
-	Engine::Model windowModel2 = Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/plane_2d.obj", textures->getTexture("window"));
+	Engine::Model windowModel2 = Engine::Model("resources/objects/plane_2d.obj", textures->getTexture("window"));
 	windowModel2.scale(glm::vec3(10.0f, 10.0f, 10.0f));
 	windowModel2.translate(glm::vec3(0.0f, 0.0f, 10.0f));
 	scene->addObject(windowModel2);
@@ -158,7 +158,7 @@ int main()
 	float x = 0.0f;
 	for (int i = 0; i < boxesTypes.size(); i++)
 	{
-		Engine::Model* box = new Engine::Model("D:/Programming/Cpp/ICP04/ICP02/resources/obj/cube_triangles_normals_tex.obj", textures->getTexture(boxesTypes[i]));
+		Engine::Model* box = new Engine::Model("resources/objects/cube_triangles_normals_tex.obj", textures->getTexture(boxesTypes[i]));
 		box->translate(glm::vec3(x, 0.0f, 100.0f));
 		box->scale(glm::vec3(15.0f, 15.0f, 15.0f));
 		scene->addObject(*box);
