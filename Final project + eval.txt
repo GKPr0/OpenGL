@@ -1,7 +1,7 @@
 START = 100 points
 
 ESSENTIALS:
-CAN BE RESTORED FROM OLDER VER* realtime 2D raster processing = tracker (can be separate project), threads
+OK * realtime 2D raster processing = tracker (can be separate project), threads
 OK * 3D GL (glfw+glew), shaders, core profile 
 OK * mouse (both axes), keyboard, fullscreen vs. windowed switching
 OK * multiple moving 3D models, at leats one loaded from file
