@@ -32,6 +32,7 @@ namespace Engine {
 
         std::vector<Particle> particles;
         unsigned int amount;
+        unsigned int lastUsedParticle;
 
         Texture* texture;
     };  

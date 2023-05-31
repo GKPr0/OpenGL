@@ -52,13 +52,14 @@ namespace Engine {
 		glDepthMask(GL_FALSE); // set Z to read-only
 
 		// Assign Distance from camrea to each transparent model
+		glm::vec3 camPos = camera.getPosition();
 		std::vector<std::pair<float, Model*>> modelsWithDistance;
 		for (Model* model : objects)
 		{
 			if (!model->isTransparent())
 				continue;
 
-			float distance = glm::length(camera.getPosition() - model->getPosition());
+			float distance = glm::length(camPos - model->getPosition());
 			modelsWithDistance.push_back(std::make_pair(distance, model));
 		}
 
@@ -70,7 +71,7 @@ namespace Engine {
 			});
 
 		for (auto it = modelsWithDistance.begin(); it != modelsWithDistance.end(); ++it)
-			it->second->camRelatedRender(program, camera.getPosition(), camera.getDirection());
+			it->second->camRelatedRender(program, camPos);
 
 		glDisable(GL_BLEND);
 		glEnable(GL_CULL_FACE);
@@ -97,7 +98,7 @@ namespace Engine {
 
 		program.use();
 		program.setMat4("uProj_m", camera.getProjectionMatrix());
-		program.setMat4("uV_m", glm::mat4(glm::mat3(camera.getViewMatrix())));
+		program.setMat4("uV_m", glm::mat4(glm::mat3(camera.getViewMatrix()))); // remove translation from the view matrix so camera is in the center of the skybox
 
 		skyBox->render(program);
 	}

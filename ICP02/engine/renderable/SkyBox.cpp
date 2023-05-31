@@ -100,8 +100,11 @@ namespace Engine
 			);
 		}
 
+        // Filters for minification and magnification
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+        // Wrapping mode for S, T, and R coordinates is set so edge pixels will be repeated in each direction when outside of the texture range
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
@@ -114,8 +117,10 @@ namespace Engine
     {
         glActiveTexture(GL_TEXTURE1);
         program.setInt("skybox", 1);
+
         program.setMat4("uM_m", getModelMatrix());
 
+        // Make sure skybox appears behind everything
         glDepthMask(GL_FALSE);
         glDepthFunc(GL_LEQUAL);
 		

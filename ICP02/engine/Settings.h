@@ -36,7 +36,7 @@ namespace Engine {
         float constantAttenuation = 1.0f;
         float linearAttenuation = 0.0015f;
         float quadraticAttenuation = 0.0f;
-        float cutOff = glm::cos(glm::radians(12.5f));
+        float cutOff = glm::cos(glm::radians(8.0f));
         float outerCutOff = glm::cos(glm::radians(15.0f));
     };
 

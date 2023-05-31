@@ -27,11 +27,11 @@ namespace Engine {
 
         glBindVertexArray(vao);
 
-        // fill mesh buffer
+        // fill VBO buffer
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(particle_quad), particle_quad, GL_STATIC_DRAW);
 
-        // set mesh attributes
+        // set attributes
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0); //Position
 		glEnableVertexAttribArray(0);
 
@@ -88,10 +88,9 @@ namespace Engine {
 		}
 	}
 
-    unsigned int lastUsedParticle = 0;
 	unsigned int ParticleGenerator::firstUnusedParticle()
 	{
-        // first search from last used particle
+        // first search from last used particle (prev particles are probaly heltier)
         for (unsigned int i = lastUsedParticle; i < this->amount; ++i) {
             if (this->particles[i].Color.a <= 0.0f) {
                 lastUsedParticle = i;

@@ -27,7 +27,7 @@ namespace Engine {
         }
     }
 
-    std::string Engine::Shader::loadSource(const std::string& file)
+    std::string Shader::loadSource(const std::string& file)
     {
         std::ifstream fileStream;
         std::stringstream ss;

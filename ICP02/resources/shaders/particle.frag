@@ -10,5 +10,5 @@ uniform sampler2D tex0;
 
 void main()
 {
-    FragColor = texture(tex0, TexCoords) * ParticleColor;
+    FragColor = texture(tex0, TexCoords) * ParticleColor; // Particle color is used priparly to blend out the texture
 }  

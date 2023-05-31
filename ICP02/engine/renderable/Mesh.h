@@ -18,7 +18,7 @@ namespace Engine
 		Mesh(const std::vector<MeshVertex>& vertices, const std::vector<GLuint> indices, Texture* texture);
 
 		virtual void render(Program& program) override;
-		void camRelatedRender(Program& program, glm::vec3 cameraPos, glm::vec3 cameraDir);
+		void camRelatedRender(Program& program, glm::vec3 cameraPos);
 
 		void setTexture(Texture* texture) { this->texture = texture; }
 		Texture* getTexture() const { return texture; }

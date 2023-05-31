@@ -16,7 +16,7 @@ namespace Engine
 		virtual void rotate(const float& angle, const glm::vec3& vec) override;
 
 		virtual void render(Program& program) override;
-		void camRelatedRender(Program& program, glm::vec3 cameraPos, glm::vec3 cameraDir);
+		void camRelatedRender(Program& program, glm::vec3 cameraPos);
 
 		std::vector<Mesh> getMeshes() const { return meshes; }
 

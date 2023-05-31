@@ -75,16 +75,19 @@ void main()
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
     vec3 lightDir = normalize(light.position - fragPos);
-	vec3 reflectDir = reflect(-lightDir, normal);
+	vec3 reflectDir = reflect(-lightDir, normal); //Calucalte direction of reflection 
 
-    // attenuation
+    // attenuation 
     float lightDistance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constantAttenuation + light.linearAttenuation * lightDistance + light.quadraticAttenuation * (lightDistance * lightDistance));    
+    float constAtt = light.constantAttenuation;
+    float linAtt = light.linearAttenuation * lightDistance;
+    float quadAtt = light.quadraticAttenuation * (lightDistance * lightDistance);
+    float attenuation = 1.0 / (constAtt + linAtt + quadAtt);
 	
     // colors
-    vec3 ambient = light.ambientColor * vec3(1.0);
-    vec3 diffuse = max(dot(normal, lightDir), 0.0) * light.diffuseColor;
-    vec3 specular = pow(max(dot(reflectDir, viewDir), 0.0), 5.0f) * light.specularColor;
+    vec3 ambient = light.ambientColor * vec3(1.0); // Ambient light of color
+    vec3 diffuse = max(dot(normal, lightDir), 0.0) * light.diffuseColor; // Diffuse (rozptyl) light determines the
+    vec3 specular = pow(max(dot(reflectDir, viewDir), 0.0), 5.0f) * light.specularColor; // Exponent determines "shines"
 	
     ambient *= attenuation;
     diffuse *= attenuation;
@@ -103,17 +106,20 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 
      // attenuation
     float lightDistance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constantAttenuation + light.linearAttenuation * lightDistance + light.quadraticAttenuation * (lightDistance * lightDistance));    
+    float constAtt = light.constantAttenuation;
+    float linAtt = light.linearAttenuation * lightDistance;
+    float quadAtt = light.quadraticAttenuation * (lightDistance * lightDistance);
+    float attenuation = 1.0 / (constAtt + linAtt + quadAtt);
 	
-    // spotlight intensity
-    float theta = dot(lightDir, normalize(-light.direction)); 
-    float epsilon = light.cutOff - light.outerCutOff;
-    float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
-
     // colors
     vec3 ambient = light.ambientColor * vec3(1.0);
     vec3 diffuse = max(dot(normal, lightDir), 0.0) * light.diffuseColor;
     vec3 specular = pow(max(dot(reflectDir, viewDir), 0.0), 5.0f) * light.specularColor;
+
+    // spotlight intensity
+    float theta = dot(lightDir, normalize(-light.direction)); // This angel is used to determinant if the fragment is inside the spotlights cone
+    float epsilon = light.cutOff - light.outerCutOff; //Eepsilon is the difference between the inner and outer cone angles (ie. the spotlight's cone) 
+    float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0); // Intesity is calculated so there is soft transition between inner (full intesitiy) and outer cone (no intensity)
 	
     ambient *= attenuation * intensity;
     diffuse *= attenuation * intensity;

@@ -26,7 +26,7 @@ namespace Engine {
 
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, settings.majorVersion);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, settings.minorVersion);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // usage of ony Core profile features
 
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
         glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
@@ -68,13 +68,14 @@ namespace Engine {
         // enable Z buffer test
         glEnable(GL_DEPTH_TEST);
 
-        // ALL objects are non-transparent, cull back face of polygons 
+        // Do not show faces that are not visible from camera prespective
         glEnable(GL_CULL_FACE);   
 
         // enable alpha blending and set alpha blending function
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+        //Enable debug output if supported
         if (glfwExtensionSupported("GL_ARB_debug_output"))
         {
             glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);

@@ -11,5 +11,5 @@ void main()
 {
     TexCoords = aPos;
     vec4 pos = uProj_m * uV_m * uM_m * vec4(aPos, 1.0);
-    gl_Position = pos.xyww;
+    gl_Position = pos.xyww; // z repalced by w so all points are drawn in one plane without considering for camera
 }

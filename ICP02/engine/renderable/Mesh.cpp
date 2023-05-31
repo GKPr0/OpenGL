@@ -53,7 +53,7 @@ namespace Engine
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    void Mesh::camRelatedRender(Program& program, glm::vec3 cameraPos, glm::vec3 cameraDir)
+    void Mesh::camRelatedRender(Program& program, glm::vec3 cameraPos)
     {
         // Calculate the center point and length to the camera
         std::vector<std::pair<float, GLuint>> triangleData;

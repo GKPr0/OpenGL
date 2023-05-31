@@ -30,10 +30,6 @@ namespace Engine {
 
 		while (!glfwWindowShouldClose(window))
 		{		
-			glEnable(GL_DEPTH_TEST);
-			glDepthFunc(GL_LESS);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 			calculateDeltaTime();
 
 			loopCallback();
@@ -44,17 +40,12 @@ namespace Engine {
 		}
 	}
 
-	void Window::stopRender()
-	{
-		glfwSetWindowShouldClose(window, true);
-	}
-
 	Window::~Window()
 	{
 		exit();
 	}
 
-	void Window::exit() const
+	void Window::exit()
 	{
 		if(window != nullptr)
 			glfwSetWindowShouldClose(window, GLFW_TRUE);

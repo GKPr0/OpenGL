@@ -7,16 +7,7 @@
 #include "../Settings.h"
 
 namespace Engine {
-    class Window
-    {
-        GLFWwindow* window = nullptr;
-        unsigned width;
-        unsigned height;
-        std::string title;
-
-        void (*loopCallback)() = nullptr;
-        void (*inputCallback)(GLFWwindow*) = nullptr;
-
+    class Window {
     public:
         Window(const unsigned width = settings.windowWidth,
             const unsigned height = settings.windowHeight,
@@ -26,8 +17,7 @@ namespace Engine {
 
         void setRenderMethod(void (*func)()) { loopCallback = func; }
         void startRender();
-        void stopRender();
-        void exit() const;
+        void exit();
 
         void setTitle(const std::string& title);
         void setSize(const unsigned& width, const unsigned& height);
@@ -47,6 +37,15 @@ namespace Engine {
         std::string getTitle() const { return title; }
         bool isReady() const { return window != nullptr; }
         GLFWwindow* getWindow() const { return window; }
+
+    private:
+        GLFWwindow* window = nullptr;
+        unsigned width;
+        unsigned height;
+        std::string title;
+
+        void (*loopCallback)() = nullptr;
+        void (*inputCallback)(GLFWwindow*) = nullptr;
     };
 }
 
