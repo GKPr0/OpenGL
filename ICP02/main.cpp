@@ -264,8 +264,9 @@ void moveFlashLights()
 	{
 		flashLight->setDirection(camera->getDirection());
 
-		auto position = camera->getPosition();
-		position.x += xOffset;
+		// Calculate x-offset based on camera orientation
+		glm::vec3 offset = camera->getRight() * xOffset;
+		glm::vec3 position = camera->getPosition() + offset;
 		flashLight->setPosition(position);
 
 		xOffset += xStep;

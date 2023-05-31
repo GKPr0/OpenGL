@@ -34,7 +34,10 @@ namespace Engine {
 		
 		void setPosition(const glm::vec3& position) { this->position = position; }
 		const glm::vec3 getPosition() const { return position; }
+
 		const glm::vec3 getDirection() const { return direction; }
+		const glm::vec3 getUp() const { return up; }
+		const glm::vec3 getRight() const { return right; }
 
 	private:
 		Window& window;
