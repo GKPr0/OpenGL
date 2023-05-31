@@ -24,7 +24,7 @@
     <ProjectGuid>{123f58c4-eb89-468d-8e82-1f99d3341b68}</ProjectGuid>
     <RootNamespace>ICP02</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ICP04</ProjectName>
+    <ProjectName>SimpleEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

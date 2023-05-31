@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ICP02", "ICP02\ICP02.vcxproj", "{123F58C4-EB89-468D-8E82-1F99D3341B68}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tracker", "Tracker\Tracker.vcxproj", "{95FD2C81-3175-425D-9AB9-8D625D072249}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleEngine", "SimpleEngine\SimpleEngine.vcxproj", "{123F58C4-EB89-468D-8E82-1F99D3341B68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Debug|x64.ActiveCfg = Debug|x64
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Debug|x64.Build.0 = Debug|x64
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Debug|x86.ActiveCfg = Debug|Win32
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Debug|x86.Build.0 = Debug|Win32
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Release|x64.ActiveCfg = Release|x64
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Release|x64.Build.0 = Release|x64
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Release|x86.ActiveCfg = Release|Win32
+		{95FD2C81-3175-425D-9AB9-8D625D072249}.Release|x86.Build.0 = Release|Win32
 		{123F58C4-EB89-468D-8E82-1F99D3341B68}.Debug|x64.ActiveCfg = Debug|x64
 		{123F58C4-EB89-468D-8E82-1F99D3341B68}.Debug|x64.Build.0 = Debug|x64
 		{123F58C4-EB89-468D-8E82-1F99D3341B68}.Debug|x86.ActiveCfg = Debug|Win32

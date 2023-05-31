@@ -317,7 +317,7 @@ void updateParticles()
 	for (auto particleGen : scene->getParticleGenerators())
 	{
 		particleGen->update(Engine::deltaTime, 2);
-		particleGen->rotateX(((rand() % 360) / 100.0f));
+		particleGen->rotateX(((rand() % 360) / 100.0f)); // 0 - 3,6 degrees
 		particleGen->rotateY(((rand() % 360) / 100.0f));
 		particleGen->rotateZ(((rand() % 360) / 100.0f));
 	}

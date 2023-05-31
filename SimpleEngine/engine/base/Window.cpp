@@ -82,8 +82,7 @@ namespace Engine {
 		}
 		else
 		{
-			glfwSetWindowMonitor(window, nullptr, xPos, yPos,
-				windowWidth, windowHeight, 0);
+			glfwSetWindowMonitor(window, nullptr, xPos, yPos, windowWidth, windowHeight, 0);
 		}
 	}
 }
