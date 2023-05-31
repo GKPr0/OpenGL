@@ -23,16 +23,15 @@ It is written in C++ and uses OpenGL.
   - F changes window to fullscreen
   - ESC closes application
 
-### Build
-- All dependencies are included as part of the project.
-
 ## SimpleTracker
 This project contains simple object tracking application which marks center of object (HSV color based) with red cross.
 It is written in C++ as multithreaded app and uses OpenCV.
 One thread reads video from camera and processes it.
 Second thread renders processed video.
 
-
-### Build
+## Build
+- Requires opencv 4.6.0
 - Requires system property called OPENCV_DIR pointing to /build opencv folder (ie. C:\opencv\build).
 - Requires %OPENCV_DIR%\x64\vc15\bin in PATH.
+- Other dependencies are included as part of the projects.
+- If failed to run with message about missing glew32.dll or glfw3.dll, copy them from SipleEngine/bin to OpenGl/x64/{Debug/Release}
