@@ -207,7 +207,7 @@ void keyCallback(GLFWwindow* glfWindow, int key, int scancode, int action, int m
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
-		//audios->getAudio("oof")->playBlocking();
+		audios->getAudio("oof")->playBlocking();
 		window->exit();
 	}
 
